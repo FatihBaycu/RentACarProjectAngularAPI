@@ -3,7 +3,7 @@
         <span class="visually-hidden">Loading...</span>
     </button>
 </div>
-<table class="table table-bordered">
+<!-- <table class="table table-bordered">
     <thead>
         <tr>
             <th>Araba Id</th>
@@ -16,8 +16,8 @@
 
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.id}}</td>
+    <tr *ngFor="let car of cars" (click)="setCurrentCar(car)"  routerLink="/cars/car/{{car.id}}">
+        
         <td>{{car.brandId}}</td>
         <td>{{car.colorId}}</td>
         <td>{{car.carName}}</td>
@@ -27,4 +27,26 @@
 
     </tr>
 
-</table>
+</table> -->
+
+ <div class="card-group">
+         <div class="col">
+    
+<div  *ngFor="let car of cars"  class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://www.ilgincgercek.com/wp-content/uploads/2018/05/ilginc-araba.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{car.id}}</h5>
+      <p class="card-text">{{car.brandId}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{car.colorId}}</li>
+      <li class="list-group-item">{{car.modelYear}}</li>
+      <li class="list-group-item">{{car.dailyPrice}}</li>
+      <li class="list-group-item"> {{car.carName}}</li>
+     
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Detay Sayfası</a>
+    </div> 
+  </div>
+</div>
