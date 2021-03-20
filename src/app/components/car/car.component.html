@@ -1,52 +1,55 @@
-<div *ngIf="dataLoaded==false"><button class="btn btn-primary" type="button" disabled>
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span class="visually-hidden">Loading...</span>
-    </button>
-</div>
-<!-- <table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Araba Id</th>
-            <th>Marka Id</th>
-            <th>Renk Id</th>
-            <th>Araba Adı</th>
-            <th>Model Yılı</th>
-            <th>Günlük Fiyatı</th>
-            <th>Günlük Açıklması</th>
+<!-- <div class="col-lg-12">
+  <table class="table table-hover table-striped mt-4 border">
+     <thead>
+     <tr>
+        <th class="text-center" style="width: 50px">#</th>
+        <th>Marka</th>
+        <th>Renk</th>
+        <th>Model Yılı</th>
+        <th>Günlük Ücret</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr *ngFor="let car of carDetails" routerLink="detail/{{car.carId }}">
+        <th class="text-center">{{ car.carId }}</th>
+        <td>{{ car.brandName }} {{ car.description }}</td>
+        <td>{{ car.colorName }}</td>
+        <td>{{ car.modelYear }}</td>
+        <td>{{ car.dailyPrice }}</td>
+     </tr>
+     </tbody>
+  </table>
+</div> -->
 
-        </tr>
-    </thead>
-    <tr *ngFor="let car of cars" (click)="setCurrentCar(car)"  routerLink="/cars/car/{{car.id}}">
-        
-        <td>{{car.brandId}}</td>
-        <td>{{car.colorId}}</td>
-        <td>{{car.carName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
 
-    </tr>
+<!-- <div class="container">
 
-</table> -->
+   <div class="row">
+      <div class="col-md-3">
+         <app-color></app-color>
+      </div>
+   </div> -->
 
- <div class="card-group">
-         <div class="col">
-    
-<div  *ngFor="let car of cars"  class="card" style="width: 18rem;">
-    <img class="card-img-top" src="https://www.ilgincgercek.com/wp-content/uploads/2018/05/ilginc-araba.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{car.id}}</h5>
-      <p class="card-text">{{car.brandId}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{car.colorId}}</li>
-      <li class="list-group-item">{{car.modelYear}}</li>
-      <li class="list-group-item">{{car.dailyPrice}}</li>
-      <li class="list-group-item"> {{car.carName}}</li>
-     
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Detay Sayfası</a>
-    </div> 
-  </div>
-</div>
+<div class="col-md-12">
+   <table class="table table-hover table-striped mt-4 border">
+      <thead>
+      <tr>
+         <th class="text-center" style="width: 50px">#</th>
+         <th>Marka</th>
+         <th>Renk</th>
+         <th>Model Yılı</th>
+         <th>Günlük Ücret</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let car of carDetails" routerLink="detail/{{ car.carId }}">
+         <th class="text-center">{{ car.carId }}</th>
+         <td>{{ car.brandName }} {{ car.description }}</td>
+         <td>{{ car.colorName }}</td>
+         <td>{{ car.modelYear }}</td>
+         <td>{{ car.dailyPrice }}</td>
+      </tr>
+      </tbody>
+   </table>
+<!-- </div>
+</div> -->

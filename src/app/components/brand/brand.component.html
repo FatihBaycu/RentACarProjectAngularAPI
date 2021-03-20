@@ -1,4 +1,4 @@
-<div *ngIf="dataLoaded == false" class="spinner-border" role="status">
+<!-- <div *ngIf="dataLoaded == false" class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
 <ul class="list-group">
@@ -6,6 +6,30 @@
   <li [class]="getAllBrandClass()" routerLink="/cars">Tüm Markalar</li>
 
   <li (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" href="#" *ngFor="let brand of brands"
-    [class]="getCurrentBrandClass(brand)">
-    {{brand.brandName}}</li>
+    [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
 </ul>
+
+ -->
+
+ <div class="row">
+  <div class="col-lg-9">
+     <app-car></app-car>
+  </div>
+  <div class="col-lg-3">
+     <div class="list-group rounded-0 mt-4">
+        <div class="list-group-item fw-bold" style="background-color: #DDD">
+           <i class="bi-card-list"></i> {{ title }}
+        </div>
+
+        <button routerLink="/brands" (click)="resetCurrentBrandId()" class="{{ listAllBrandCss }}"
+                style="background-color: #EEE">
+           Tümünü Listele
+        </button>
+
+        <a *ngFor="let brand of brands" routerLink="/brands/{{ brand.brandId }}"
+                (click)="setCurrentBrand(brand.brandId)" [class]="getCurrentBrandClass(brand.brandId)">
+           {{ brand.brandName }}
+        </a>
+     </div>
+  </div>
+</div>

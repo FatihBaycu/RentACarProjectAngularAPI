@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car } from 'src/app/models/car/car';
+import { CarDetail } from 'src/app/models/carDetail/carDetail';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +14,27 @@ export class CarService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getCars():Observable<ListResponseModel<Car>>{
-    let newPath=this.apiUrl+"cars/getall";
-    return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  getCars():Observable<ListResponseModel<CarDetail>>{
+    let newPath=this.apiUrl+"cars/getcardetail";
+    return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
     }
 
-    getCarsByBrandId(brandId:number):Observable<ListResponseModel<Car>>{
-        let newPath=this.apiUrl+"cars/getcarsbybrandid?brandId="+brandId;
-        return this.httpClient.get<ListResponseModel<Car>>(newPath);
+    getCarById(carId:number):Observable<SingleResponseModel<CarDetail>>{
+      let newPath=this.apiUrl+"cars/getcarbyid?carId="+carId;
+      return this.httpClient.get<SingleResponseModel<CarDetail>>(newPath);
+  }
+
+
+    getCarsByBrandId(brandId:number):Observable<ListResponseModel<CarDetail>>{
+        let newPath=this.apiUrl+"cars/getcardetailsbybrand?brandId="+brandId;
+        return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
     }
 
-    getCarDetail(){}
+    // getCarDetail(){}
 
-    getCarsByColorId(colorId:number):Observable<ListResponseModel<Car>>{
-      let newPath=this.apiUrl+"cars/getcarsbycolorid?colorId="+colorId;
-                                  
-      return this.httpClient.get<ListResponseModel<Car>>(newPath);
+    getCarsByColorId(colorId:number):Observable<ListResponseModel<CarDetail>>{
+      let newPath=this.apiUrl+"cars/getcardetailsbycolor?colorId="+colorId;
+      return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
   }
   
   }

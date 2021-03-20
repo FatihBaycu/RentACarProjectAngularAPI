@@ -1,58 +1,67 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarDetail } from 'src/app/models/carDetail/carDetail';
-import { CarDetailService } from 'src/app/services/carDetails/car-detail.service';
+import { CarImage } from 'src/app/models/carImage/carImage';
+import { CarImageService } from 'src/app/services/car-image.service';
+import { CarService } from 'src/app/services/car/car.service';
+
 
 @Component({
   selector: 'app-car-detail',
-  templateUrl: './car-detail.component.html',
+  templateUrl:'./car-detail.component.html',
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-    carDetails:CarDetail[]=[];
-    dataLoaded=false;
+
+  carDetail: CarDetail;
+   carImages: CarImage[] = [];
+   imageBaseUrl = "https://localhost:44342/";
+   currentImage:CarImage;
+
+   constructor(
+      private carService: CarService,
+      private activatedRoute: ActivatedRoute,
+      private carImageService: CarImageService) {
+   }
+
+   ngOnInit(): void {
+      this.activatedRoute.params.subscribe((params) => {
+         if (params['carId']) {
+            this.getPhotosByCarId(params['carId']);
+            this.getCarById(params['carId']);
+         }
+      });
+   }
+
+   getCarById(id: number) {
+      this.carService.getCarById(id).subscribe((response) => {
+         this.carDetail = response.data;
+
+      });
+   }
+
+   getPhotosByCarId(carId: number) {
+      this.carImageService.getImagesByCarId(carId).subscribe((response) => {
+         this.carImages = response.data;
+      });
+   }
+
+   read(url: string){
+      console.log(url)
+      return url;
+   }
+
+   getCurrentImageClass(carImage:CarImage){
+      if(this.carImages[0]==carImage){
+         return "carousel-item active";
+      }
+      else {return "carousel-item";
+   }
+
+   }
+   setCurrentImageClass(carImage:CarImage){
+      this.currentImage=carImage;
+     }
 
 
-  constructor(private carDetailService:CarDetailService,private activatedRoute:ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.getCarDetails();
-    this.activatedRoute.params.subscribe(params=>{
-      if(params["brandId"]){this.getCarsByBrandId(params["brandId"]);}
-      else if(params["colorId"]){this.getCarsByColorId(params["colorId"]);}
-        else{this.getCarDetails();}
-    })
   }
-
-
-
-
-  getCarDetails(){
-    this.carDetailService.getCarDetail().subscribe(response=>{
-      this.carDetails=response.data;
-      this.dataLoaded=true;
-    })
-  }
-
-
-
-  getCarsByColorId(colorId:number){
-    console.log("renge göre araba listeleme metotu başladı.");
-    this.carDetailService.getCarsByColorId(colorId).subscribe((response)=>{
-      this.carDetails=response.data;
-      this.dataLoaded=true;
-      console.log("renge göre araba listeleme metotu bitti.");
-    })
-  }
-
-  getCarsByBrandId(brandId:number){
-    console.log("Markaya göre araba listeleme metotu başladıç");
-    this.carDetailService.getCarsByBrandId(brandId).subscribe((response)=>{
-      this.carDetails=response.data;
-      this.dataLoaded=true;
-      console.log("Markaya göre araba listeleme metotu bitti.");
-    })
-  }
-
-
-}
