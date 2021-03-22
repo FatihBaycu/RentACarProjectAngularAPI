@@ -34,18 +34,18 @@ export class CarFilterComponent implements OnInit {
   ngOnInit(): void {
    
     
-    this.activatedRoute.queryParams.subscribe((params) => {    
-        console.log(params['colorId'],params['brandId']);
-      if (params['colorId'] && params['brandId']) {
-        this.getCurrentBrandAndColorId(params['colorId'], params['brandId']);
-      } else if (params['colorId']) {
-        this.getCurrentColor(params['colorId']);
-      } else if (params['brandId']) {
-        this.getCurrentBrand(params['brandId']);
-      } else {
-        this.getCars();
-      }
-    });
+    // this.activatedRoute.queryParams.subscribe((params) => {    
+    //     console.log(params['colorId'],params['brandId']);
+    //   if (params['colorId'] && params['brandId']) {
+    //     this.getCurrentBrandAndColorId( params['brandId'],params['colorId']);
+    //   } else if (params['colorId']) {
+    //     this.getCurrentColor(params['colorId']);
+    //   } else if (params['brandId']) {
+    //     this.getCurrentBrand(params['brandId']);
+    //   } else {
+    //     this.getCars();
+    //   }
+    // });
    
     this.getBrands();
     this.getColors();

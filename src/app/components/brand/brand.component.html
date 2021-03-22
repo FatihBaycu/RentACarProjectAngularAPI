@@ -15,7 +15,7 @@
 
     <select class="form-select" size="3" >
       <option  routerLink="/brands" (click)="resetCurrentBrandId()">Tüm Markalar</option>
-      <option *ngFor="let brand of brands |brandPipe:filterText" routerLink="/brands/{{ brand.brandId }}" (click)="setCurrentBrand(brand.brandId)">{{brand.brandName}}</option>
+      <option *ngFor="let brand of brands |brandPipe:filterText"  (click)="setCurrentBrand(brand.brandId)">{{brand.brandName}}</option>
     </select>
     <br>
 

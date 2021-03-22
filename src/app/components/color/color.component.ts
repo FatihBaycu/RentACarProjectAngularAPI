@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { CarDetail } from "src/app/models/carDetail/carDetail";
 import { Color } from "src/app/models/color/color";
 import { ColorService } from "src/app/services/color/color.service";
@@ -19,7 +20,7 @@ export class ColorComponent implements OnInit {
   currentColorId: number = 0;
   carDetails: CarDetail[] = [];
 
-  constructor(private colorService: ColorService) {}
+  constructor(private colorService: ColorService, private _router: Router) {}
 
   ngOnInit(): void {
     this.getColors();
@@ -31,9 +32,15 @@ export class ColorComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+  getFilter(colorId:number){
+    this._router.navigate(['cars/'], {
+      queryParams: {colorId: colorId },
+    });
+  }
 
   setCurrentColor(colorId: number) {
     this.currentColorId = colorId;
+  this.getFilter(colorId)
   }
 
   getCurrentColorClass(colorId: number): string {

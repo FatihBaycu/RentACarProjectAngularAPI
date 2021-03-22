@@ -27,8 +27,8 @@ const routes: Routes = [
   { path: "cars/filter/:brandId/:colorId",component:CarComponent},
   // { path: "cars/filter/:colorId",component:CarComponent},
   // { path: "cars/filter/:brandId",component:CarComponent},
-  { path: 'brands/:brandId', component: CarComponent },
-  { path: 'colors/:colorId', component: CarComponent },
+  // { path: 'brands/:brandId', component: CarComponent },
+  // { path: 'colors/:colorId', component: CarComponent },
   { path: '**',  pathMatch: 'full',component:CarComponent}
 
 ];

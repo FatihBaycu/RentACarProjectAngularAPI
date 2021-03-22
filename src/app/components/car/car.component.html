@@ -30,7 +30,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let car of carDetails | filterPipe:filterText"  routerLink="../../cars/detail/{{ car.carId }}">
+      <tr *ngFor="let car of carDetails | filterPipe:filterText"  routerLink="/cars/detail/{{ car.carId }}">
          <th class="text-center">{{ car.carId }}</th>
          <td>{{ car.brandName  }} </td>
          <td>{{ car.description }}</td>

@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Brand } from 'src/app/models/brand/brand';
 import { BrandService } from 'src/app/services/brand/brand.service';
 
@@ -18,7 +19,7 @@ listAllBrandCss: string = "text-start list-group-item";
 brands: Brand[] = [];
 currentBrandId: number = 0;
 
-constructor(private brandService: BrandService) {
+constructor(private brandService: BrandService,   private _router: Router) {
 }
 
 ngOnInit(): void {
@@ -34,6 +35,7 @@ getBrands() {
 
 setCurrentBrand(brandId: number) {
    this.currentBrandId = brandId;
+   this.getFilter(brandId);
 }
 
 getCurrentBrandClass(brandId: number): string {
@@ -47,7 +49,11 @@ getCurrentBrandClass(brandId: number): string {
 resetCurrentBrandId(){
    this.currentBrandId = 0
 }
-
+getFilter(brandId:number){
+   this._router.navigate(['cars/'], {
+     queryParams: {brandId: brandId },
+   });
+ }
 //    name = 'Angular 4';
 //   myDropDown: string;
 //   items:Brand[]=[];
