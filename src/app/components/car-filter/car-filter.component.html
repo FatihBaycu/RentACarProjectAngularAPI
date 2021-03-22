@@ -1,0 +1,45 @@
+<!-- 
+<br>
+  <div class="row">
+    <div class="col">    
+    
+
+    <select class="form-select" >
+        <option  routerLink="/brands" >Tüm Markalar</option>
+        <option *ngFor="let brand of brands" 
+        routerLink="/brands/{{ brand.brandId }}" 
+        (click)="setCurrentBrand(brand.brandId)">{{brand.brandName}}</option>
+      </select></div>
+      
+      <div class="col">
+    <select class="form-select">
+      <option  routerLink="/colors" (click)="resetCurrentColor()">Tüm Renkler</option>
+      <option *ngFor="let color of colors" routerLink="/colors/{{ color.colorId }}" (click)="setCurrentColor(color.colorId)">{{color.colorName}}</option>
+    </select></div>
+
+          <div class="col">
+          <button (click)="getCurrentBrandAndColorId(brand.brandId,color.colorId)" routerLink=cars/detail/{{colorId,brandId}} class="btn btn-warning">Filtrele</button>
+          </div>
+  
+</div>-->
+
+
+ <div class="row mb-2">
+  <div class="col col-4">
+      <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example">
+          <option *ngFor="let brand of brands" [value]="brand.brandId" selected="{{getCurrentBrand(brand.brandId)}}">{{brand.brandName}}</option>
+        </select>
+  </div>
+  <div class="col col-4">
+      <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
+          <option *ngFor="let color of colors" [value]="color.colorId" [selected]="getCurrentColor(color.colorId)"  >{{color.colorName}}</option>
+        </select>
+  </div>
+  <div class="col col-2">
+      <!-- <a routerLink="/cars/filter/{{brandFilter}}/{{colorFilter}}" class="btn btn-warning">Filtrele</a> -->
+      <a (click)="getFilter(brandFilter,colorFilter)" class="btn btn-warning">Filtrele</a>
+
+      </div>
+      <div class="col col-2"><a routerLink="/cars" class="btn btn-danger">Temizle</a>
+      </div>
+</div>

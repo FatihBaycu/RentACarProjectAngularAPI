@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand/brand';
 import { BrandService } from 'src/app/services/brand/brand.service';
 
@@ -8,32 +8,9 @@ import { BrandService } from 'src/app/services/brand/brand.service';
   styleUrls: ['./brand.component.css'],
 })
 export class BrandComponent implements OnInit {
-//   brands: Brand[] = [];
-//   currentBrand:Brand;
-//   dataLoaded=false;
-//   constructor(private brandService: BrandService) {}
 
-//   ngOnInit(): void {
-//     this.getBrands();
-//   }
-//   getBrands() {
-//     this.brandService.getBrands().subscribe(response=>{
-//       this.brands=response.data;
-//       this.dataLoaded=true;
-//     })
-//   }
-
-//   setCurrentBrand(brand:Brand){this.currentBrand=brand}
-
-//   getCurrentBrandClass(brand:Brand){
-//     if(brand==this.currentBrand){return "list-group-item active";}
-//     else{return "list-group-item";}
-//   }
-
-// getAllBrandClass(){
-//   if(!this.currentBrand){return "list-group-item active";}
-//   else{return "list-group-item";}
-// }
+ dataLoaded=false;
+ filterText="";
 
 
 title: string = 'Markalar';
@@ -51,6 +28,7 @@ ngOnInit(): void {
 getBrands() {
    this.brandService.getBrands().subscribe((response) => {
       this.brands = response.data;
+      this.dataLoaded=true;
    });
 }
 
@@ -69,5 +47,27 @@ getCurrentBrandClass(brandId: number): string {
 resetCurrentBrandId(){
    this.currentBrandId = 0
 }
+
+//    name = 'Angular 4';
+//   myDropDown: string;
+//   items:Brand[]=[];
+//   origItems:Brand[]=[];
+//   @ViewChild('selectList', { static: false }) selectList: ElementRef;
+
+// onChangeofOptions(newGov: any) {
+//    console.log(newGov);
+//  }
+//     filterItem(event: string) {
+//     if (!event) {
+//       this.brands = this.items;
+//     } // when nothing has typed*/   
+//     if (typeof event === 'string') {
+//       console.log(event);
+//       this.items = this.origItems.filter((p:Brand) => p.brandName.toLocaleLowerCase().startsWith(event.toLocaleLowerCase()));
+//     }
+//     console.log(this.items.length);
+//     this.selectList.nativeElement.size = this.items.length + 1;
+//   }
+
 }
 

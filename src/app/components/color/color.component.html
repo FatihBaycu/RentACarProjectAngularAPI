@@ -1,33 +1,35 @@
-<!-- <div *ngIf="dataLoaded == false" class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<ul class="list-group">
-  <li class="list-group-item"><strong>Renkler</strong></li>
-  <li [class]="getAllColorClass()" routerLink="/cars">Tüm Renkler</li>
+<br><div *ngIf="dataLoaded == false" class="spinner-border" role="status">
+   <span class="visually-hidden">Loading...</span>
+ </div>
 
-  <li [class]="getCurrentColorClass(color)" routerLink="/cars/colors/{{color.colorId}}" *ngFor="let color of colors"
-    routerLink="/cars/color/{{color.colorId}}" href="#" (click)="setCurrentColor(color)"> {{color.colorName}}</li>
+
+    <!-- <ul> -->
+<div class="mb-3">
+      <label for="filterColorText" class="form-label">Renk Ara</label>
+      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterColorText"
+       placeholder="Renk Arayınız">
+    </div>
+    <div *ngIf="filterText" class="alert alert-success">
+    {{filterText}} Aradınız
+    </div> 
+
+    <select class="form-select" size="3" >
+      <option  routerLink="/colors" (click)="resetCurrentColor()">Tüm Renkler</option>
+      <option *ngFor="let color of colors |colorPipe:filterText" routerLink="/colors/{{ color.colorId }}" (click)="setCurrentColor(color.colorId)">{{color.colorName}}</option>
+    </select><br>
+
+
+<!-- <li routerLink="/colors"
+ (click)="resetCurrentColor()" 
+ class="{{ listAllBrandCss }}" 
+ style="background-color: #EEE">
+Tümünü Listele
+</li>
+
+<li *ngFor="let color of colors | colorPipe:filterText"
+routerLink="/colors/{{ color.colorId }}"
+(click)="setCurrentColor(color.colorId)"
+[class]="getCurrentColorClass(color.colorId)">
+{{ color.colorName }}
+</li>
 </ul> -->
-
-<div class="row">
-  <div class="col-lg-9">
-     <app-car></app-car>
-  </div>
-  <div class="col-lg-3">
-     <div class="list-group rounded-0 mt-4">
-        <div class="list-group-item fw-bold" style="background-color: #DDD">
-           <i class="bi-card-list"></i> {{ title }}
-        </div>
-
-        <button routerLink="/colors" (click)="resetCurrentColor()" class="{{ listAllBrandCss }}"
-                style="background-color: #EEE">
-          Tümünü Listele
-        </button>
-
-        <button *ngFor="let color of colors" routerLink="/colors/{{ color.colorId }}"
-                (click)="setCurrentColor(color.colorId)" [class]="getCurrentColorClass(color.colorId)">
-           {{ color.colorName }}
-        </button>
-     </div>
-  </div>
-</div>

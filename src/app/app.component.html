@@ -1,23 +1,28 @@
-<!-- <div class="container">
+<!-- 
+
+
+<div class="container">
       <app-navi></app-navi>
-      <br>
       <div class="row">
-            <div class="col">
-                  <div class="col"><app-color></app-color></div><br>
-                  <div class="col"><app-brand></app-brand></div>
-               
-            </div>
-            <div class="col-md-9">
-                  <router-outlet></router-outlet>
-
-            </div>
-            <div class="row"><app-car-detail></app-car-detail></div>
-
+        <div class="col-md-3"><app-color></app-color></div>
+        <div class="col-md-9"><router-outlet></router-outlet></div>
+        <div class="row"><div class="col-md-3"><app-brand></app-brand></div></div> 
       </div>
 </div> -->
 
-<app-navi></app-navi>
-
 <div class="container">
-   <router-outlet></router-outlet>
+  <app-navi></app-navi>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-group" style="margin-top: 20px;">
+        <li class="list-group-item"><app-brand></app-brand></li>
+        <li class="list-group-item"><app-color></app-color></li>
+    </ul>
+    </div>
+    <div class="col-md-9">
+      
+      <div class="row-md-9">
+        <app-car-filter></app-car-filter><br>
+        <router-outlet></router-outlet></div>
+  </div>
 </div>

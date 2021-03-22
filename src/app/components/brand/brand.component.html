@@ -1,35 +1,51 @@
-<!-- <div *ngIf="dataLoaded == false" class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-<ul class="list-group">
-  <li class="list-group-item"><strong>Markalar</strong></li>
-  <li [class]="getAllBrandClass()" routerLink="/cars">Tüm Markalar</li>
+<div *ngIf="dataLoaded == false" class="spinner-border" role="status">
+   <span class="visually-hidden">Loading...</span>
+ </div>
+ <!-- <ul> -->
 
-  <li (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" href="#" *ngFor="let brand of brands"
-    [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
-</ul>
+   <div class="mb-3">
+      <label for="filterBrandText" class="form-label">Marka Ara</label>
+      <input type="text" [(ngModel)]="filterText" class="form-control" id="filterBrandText"
+       placeholder="Marka Arayınız">
+    </div>
+    <div *ngIf="filterText" class="alert alert-success">
+    {{filterText}} Aradınız
+    </div> 
 
- -->
 
- <div class="row">
-  <div class="col-lg-9">
-     <app-car></app-car>
-  </div>
-  <div class="col-lg-3">
-     <div class="list-group rounded-0 mt-4">
-        <div class="list-group-item fw-bold" style="background-color: #DDD">
-           <i class="bi-card-list"></i> {{ title }}
-        </div>
+    <select class="form-select" size="3" >
+      <option  routerLink="/brands" (click)="resetCurrentBrandId()">Tüm Markalar</option>
+      <option *ngFor="let brand of brands |brandPipe:filterText" routerLink="/brands/{{ brand.brandId }}" (click)="setCurrentBrand(brand.brandId)">{{brand.brandName}}</option>
+    </select>
+    <br>
 
-        <button routerLink="/brands" (click)="resetCurrentBrandId()" class="{{ listAllBrandCss }}"
-                style="background-color: #EEE">
-           Tümünü Listele
-        </button>
+    <!-- <input type="text"         
+    (ngModelChange)="filterItem($event)" 
+    [(ngModel)]="filterText">
+    <br>
+<select 
+     #selectList
+     [(ngModel)]="myDropDown" 
+    (ngModelChange)="onChangeofOptions($event)">
+    <option value="empty"></option>
+    <option *ngFor="let item of brands">         
+        {{item.brandName}}
+    </option>    
+</select>
+<p>items {{ items | json }}</p> -->
 
-        <a *ngFor="let brand of brands" routerLink="/brands/{{ brand.brandId }}"
-                (click)="setCurrentBrand(brand.brandId)" [class]="getCurrentBrandClass(brand.brandId)">
-           {{ brand.brandName }}
-        </a>
-     </div>
-  </div>
-</div>
+
+
+ <!-- <li routerLink="/brands" 
+(click)="resetCurrentBrandId()" 
+ class="{{ listAllBrandCss }}" 
+style="background-color: #EEE">
+Tümünü Listele
+</li>
+ <li *ngFor="let brand of brands |brandPipe:filterText" 
+ routerLink="/brands/{{ brand.brandId }}" 
+(click)="setCurrentBrand(brand.brandId)" s
+[class]="getCurrentBrandClass(brand.brandId)">
+ {{ brand.brandName }}
+</li>
+</ul> -->
