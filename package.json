@@ -22,6 +22,7 @@
     "@angular/router": "~11.2.4",
     "bootstrap": "^5.0.0-beta2",
     "jquery": "^3.6.0",
+    "ngx-bootstrap": "^6.2.0",
     "ngx-mat-select-search": "^3.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

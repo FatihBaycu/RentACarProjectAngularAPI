@@ -18,6 +18,11 @@
       <option *ngFor="let color of colors |colorPipe:filterText"  (click)="setCurrentColor(color.colorId)">{{color.colorName}}</option>
     </select><br>
 
+    <!-- <div class="form-group">
+      <input type="text" class="form-control" placeholder="Renk Ekle"><br>
+      <button type="button" class="btn btn-primary">Renk Ekle</button>
+      
+    </div> -->
 
 <!-- <li routerLink="/colors"
  (click)="resetCurrentColor()" 

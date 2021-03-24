@@ -18,6 +18,7 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { BrandPipePipe } from './pipes/brand-pipe.pipe';
 import { ColorPipePipe } from './pipes/color-pipe.pipe';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CarFilterComponent } from './components/car-filter/car-filter.component
     BrandPipePipe,
     ColorPipePipe,
     CarFilterComponent,
+    PaymentComponent,
 
 
   

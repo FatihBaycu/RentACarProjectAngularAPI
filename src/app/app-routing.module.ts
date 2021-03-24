@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'cars', component: CarComponent },
   { path: 'cars/detail/:carId', component: CarDetailComponent },
   { path: "cars/filter/:brandId/:colorId",component:CarComponent},
+  { path: "rentals/:carId",component:RentalComponent},
   // { path: "cars/filter/:colorId",component:CarComponent},
   // { path: "cars/filter/:brandId",component:CarComponent},
   // { path: 'brands/:brandId', component: CarComponent },
