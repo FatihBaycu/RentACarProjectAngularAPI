@@ -10,10 +10,34 @@
         </tr>
     </thead>
     <tr *ngFor="let customer of customers">
-        <td>{{customer.id}}</td>
+        <td>{{customer.customerId}}</td>
         <td>{{customer.userId}}</td>
         <td>{{customer.customerId}}</td>
         <td>{{customer.companyName}}</td>
+
+    </tr>
+</table>
+
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Müşteri ad</th>
+            <th>Müsteri soyad</th>
+            <th>Müsteri Id</th>
+            <th>Şirket Adı</th>
+            <th>Kullancı Id</th>
+
+        </tr>
+    </thead>
+    <tr *ngFor="let customerDetails of customerDetails">
+        <td>{{customerDetails.firstName}}</td>
+        <td>{{customerDetails.lastName}}</td>
+        <td>{{customerDetails.customerId}}</td>
+        <td>{{customerDetails.companyName}}</td>
+        <td>{{customerDetails.userId}}</td>
+
 
     </tr>
 </table>

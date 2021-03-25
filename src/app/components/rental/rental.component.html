@@ -5,7 +5,7 @@
     data-bs-toggle="modal"
     data-bs-target="#exampleModal">Aracı Kirala</button></div>
 
-<!-- Modal -->
+
 <div
   class="modal fade"
   id="exampleModal"
@@ -16,7 +16,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
+        <h5  *ngFor="let car of cars" class="modal-title" id="exampleModalLabel">
           {{ car.brandId }} - {{ car.colorId }} | Aracı Kirala
         </h5>
         <button
@@ -36,7 +36,7 @@
               type="text"
               disabled="disabled"
               class="form-control"
-              [value]="car.dailyPrice | currency: '₺'"
+             
             />
           </div>
         </div>
@@ -47,7 +47,7 @@
           <div class="col-8">
             <select class="form-select" [(ngModel)]="customerId">
               <option [value]="customer.customerId"
-                *ngFor="let customer of customers-"
+                *ngFor="let customer of customerDetails"
               >
                 {{ customer.firstName }} {{ customer.lastName }} |
                 {{ customer.companyName }}
@@ -85,19 +85,15 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Kapat
-        </button>
-        <button data-bs-dismiss="modal" (click)="createRental()" type="button" class="btn btn-primary">
-          Kirala
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button data-bs-dismiss="modal" (click)="createRental()" type="button" class="btn btn-primary">Kirala</button>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- <table class="table">
+<!-- 
+<table class="table">
 
     <thead>
         <tr>

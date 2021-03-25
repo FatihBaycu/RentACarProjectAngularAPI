@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
+import { CarDetail } from 'src/app/models/carDetail/carDetail';
 import { Customer } from 'src/app/models/customer/customer';
+import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails';
 import { Rental } from 'src/app/models/rental/rental';
+import { CarService } from 'src/app/services/car/car.service';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
 
@@ -14,22 +17,31 @@ import { RentalService } from 'src/app/services/rental/rental.service';
 export class RentalComponent implements OnInit {
   rentals:Rental[]=[];
   customers:Customer[]=[];
+  cars:CarDetail[]=[];
+  customerDetails:CustomerDetails[]=[];
   customerId:number;
   rentDate:Date;
   returnDate:Date;
   @Input() car:Car;
   // constructor(private rentalService: RentalService,private customerService:CustomerService) { }
-  constructor(private activatedRoute:ActivatedRoute, private router:Router,private customerService:CustomerService,private rentalService:RentalService) { }
+  constructor(private activatedRoute:ActivatedRoute,private carService:CarService, private router:Router,private customerService:CustomerService,private rentalService:RentalService) { }
 
   ngOnInit(): void {
-    //this.getRentals();
+    this.getRentals();
     this.getCustomer();
   }
 
-  
+  getCars(){
+    this.carService.getCarsTwo().subscribe((response)=>{
+      this.cars=response.data;
+      console.log(response.data);
+
+    })
+  }
   getCustomer(){
-    this.customerService.getCustomers().subscribe((response)=>{
+    this.customerService.getCustomerDetails().subscribe((response)=>{
       this.customers=response.data;
+      console.log(response.data);
     })
   }
 
@@ -46,16 +58,20 @@ export class RentalComponent implements OnInit {
   }
 
   createRental(){
-    let MyRental:Rental = {
-      rentDate: this.rentDate,
-      returnDate: this.returnDate,
-      carId: this.car.id,
-      customerId: parseInt(this.customerId.toString())
-    }}
+    // let MyRental:Rental = {
+    //   rentDate: this.rentDate,
+    //   returnDate: this.returnDate,
+    //   carId: this.car.id,
+    //   customerId: parseInt(this.customerId.toString())
+    // }
+  
+console.log("createRental Çalışıyor.");
+}
 
   getRentals() {
     this.rentalService.getRentals().subscribe(response=>{
       this.rentals=response.data;
+      console.log(response.data," getRentals çalışıyor.");
     })
   }
 

@@ -1,0 +1,59 @@
+<br>
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Araba Ekle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="carAddForm">
+                   
+                    <div class="mb-3">
+                    <label for="brandId">Marka Id</label>
+                    <div class="form-group">
+                        <input type="number" id="brandId" formControlName="brandId" class="form-control" placeholder="Marka Id"/>
+                    </div></div>
+
+                    <div class="mb-3">
+                        <label for="colorId">Renk Id</label>
+                        <div class="form-group">
+                            <input type="number" id="colorId" formControlName="colorId" class="form-control" placeholder="Renk Id"/>
+                        </div></div>
+
+                        <div class="mb-3">
+                            <label for="modelYear">Model Yılı</label>
+                            <div class="form-group">
+                                <input type="number" id="modelYear" formControlName="modelYear" class="form-control" placeholder="Model Yılı"/>
+                            </div></div>
+
+                            <div class="mb-3">
+                                <label for="dailyPrice">Günlük Ücret</label>
+                                <div class="form-group">
+                                    <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control" placeholder="Günlük Ücreti"/>
+                                </div></div>
+
+                                <div class="mb-3">
+                                    <label for="description">Açıklama</label>
+                                    <div class="form-group">
+                                        <input type="text" id="description" formControlName="description" class="form-control" placeholder="Açıklama"/>
+                                    </div></div>
+
+                                    <div class="mb-3">
+                                        <label for="carName">Model Adı</label>
+                                        <div class="form-group">
+                                            <input type="text" id="carName" formControlName="carName" class="form-control" placeholder="Model Adı"/>
+                                        </div></div>
+                            
+                                        
+
+
+                </form>
+            </div>
+            <div class="mb-3">
+                <label for="carAdd"></label>
+                <div class="form-group">
+                    <button  (click)="carAdd()"  class="btn btn-success">Ekle</button>
+                </div></div>
+        </div>
+    </div>
+</div>
