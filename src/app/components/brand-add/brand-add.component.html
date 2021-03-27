@@ -1,3 +1,26 @@
+<div>
+
+    <table class="table table-hover table-striped mt-4 border">
+        <thead>
+        <tr>
+           <th>Marka Id</th>
+           <th>Marka Adı</th>
+      
+  
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let brand of brands"  routerLink="/brands/{{brand.brandId}}">
+           <th>{{ brand.brandId }}</th>
+           <th>{{ brand.brandName }}</th>
+
+        </tr>
+        </tbody>
+     </table>
+</div>
+
+
+
 <br>
 <div class="content">
     <div class="col-md-12">

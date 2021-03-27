@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { Color } from 'src/app/models/color/color';
+import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ColorService } from 'src/app/services/color/color.service';
 
 @Component({
@@ -11,12 +14,14 @@ import { ColorService } from 'src/app/services/color/color.service';
 export class ColorAddComponent implements OnInit {
 
   colorAddForm:FormGroup;
+  colors:Color[];
   constructor(private formBuilder:FormBuilder,
     private colorService:ColorService,
     private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.createColorAddForm();
+    this.getColors();
   }
 
   createColorAddForm(){
@@ -29,12 +34,54 @@ export class ColorAddComponent implements OnInit {
   colorAdd(){
     if(this.colorAddForm.valid){
       let colorModel=Object.assign({},this.colorAddForm.value);
-      this.colorService.addColor(colorModel).subscribe((response)=>{
+      this.colorService.addColor(colorModel).subscribe(response=>{
         console.log(colorModel);
         this.toastrService.success("Renk Eklendi");
-      })
-    }
-    else{this.toastrService.error("Hatalı Giriş Yaptınız.")}
-  }
+      },
+      responseError=>{
+        if (responseError.error.Errors.length>0) {
+          console.log(responseError.error.Errors);
+      for (let i = 0; i <responseError.error.Errors.length; i++) {
 
-}
+                this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Başarısız.");
+              }
+              }
+            })
+          }
+        else{this.toastrService.error("Hatalı Giriş Yaptınız.")}
+
+      }
+
+
+        getColors(){
+            this.colorService.getColors().subscribe(response=>{
+            this.colors=response.data;
+            console.log(response.data);
+          })
+        }
+    
+  // colorAdd(){
+  //   if(this.colorAddForm.valid){
+  //   let colorModel=Object.assign({},this.colorAddForm.value);
+  //   this.colorService.addColor(colorModel).subscribe(response=>{
+  //       console.log(colorModel);
+  //     this.toastrService.success(response.message,"Başarılı");
+  //   },
+  //   responseError=>{
+  //     if(responseError.error.Errors.length>0){
+  //     console.log(responseError.error.Errors)
+
+  //     for (let i = 0; i <responseError.error.Errors.length; i++) {
+  //       this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Başarısız.");
+  //       }
+  //     }
+  //   })
+  // }
+  // else {
+  //   this.toastrService.error("Formunuz eksik,dikkat");
+  // }
+  //   console.log(colorModel);
+  // }  
+   
+  }
+ 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Car } from 'src/app/models/car/car';
 import { CarService } from 'src/app/services/car/car.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { CarService } from 'src/app/services/car/car.service';
 export class CarAddComponent implements OnInit {
 
   carAddForm:FormGroup;
+  car:Car[];
 
   constructor(
               private carService:CarService,
@@ -40,8 +42,16 @@ export class CarAddComponent implements OnInit {
         this.carService.addCar(carModel).subscribe((response)=>{
           console.log(carModel);
           this.toastrService.success("Araç başarıyla eklendi");
-        })
-      }
+        },
+        responseError=>{
+          if(responseError.error.Errors.length>0){
+            console.log(responseError.error.Errors);
+            for(let i=0; i<responseError.error.Errors.length; i++){
+              this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Başarısız");
+            }
+            }
+          })
+        }
       else{this.toastrService.error("Hatalı Giriş Yaptınız.");}
 
       }

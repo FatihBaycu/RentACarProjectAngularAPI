@@ -16,7 +16,34 @@
  {{filterText}} Aradınız
  </div> 
 
- <table class="table table-hover table-striped mt-4 border">
+
+   <div class="row">
+
+ <div class="card" style="width: 18rem; margin-right: 2rem;" *ngFor="let car of carDetails | filterPipe:filterText"  routerLink="/cars/detail/{{ car.carId }}">
+   <img src="https://localhost:44342/{{car.imagePath}}" class="card-img-top" alt="...">
+   <!-- src="{{ imageBaseUrl + carImage.imagePath }}" -->
+
+   <div class="card-body">
+     <h5 class="card-title">Marka: <strong>{{car.brandName}}</strong></h5>
+     <p class="card-text">Açıklama: <strong>{{ car.description }}</strong></p>
+   </div>
+   <ul class="list-group list-group-flush">
+     <li class="list-group-item">Ad: <strong>{{car.carName}}</strong></li>
+     <li class="list-group-item">Renk: <strong>{{car.colorName}}</strong></li>
+     <li class="list-group-item">Model Yılı: <strong>{{car.modelYear}}</strong></li>
+     <li class="list-group-item">Açıklama: <strong>{{car.description}}</strong></li>
+   </ul>
+   <div class="card-body">
+      <ul class="list-group list-group-flush">
+         <li class="list-group-item">Günlük Fiyat: <strong>{{car.dailyPrice | currency:'TL'}}</strong></li>
+            <li class="list-group-item">Kdv'li Fiyat: <strong>{{car.dailyPrice | vatAdded:18 | currency:'TL'}}</strong></li>
+            <li class="list-group-item"><Button class="btn btn-warning" routerLink="cars/update/{{car.carId}}">Güncelle</Button></li>
+         </ul>
+         </div>
+  
+ </div>
+</div>
+ <!-- <table class="table table-hover table-striped mt-4 border">
       <thead>
       <tr>
          <th class="text-center" style="width: 50px">id</th>
@@ -27,6 +54,7 @@
          <th>Model Yılı</th>
          <th>Günlük Ücret</th>
          <th>Kdv'li Fiyat(%18)</th>
+         <th>Güncelle</th>
       </tr>
       </thead>
       <tbody>
@@ -39,8 +67,9 @@
          <td>{{ car.modelYear }}</td>
          <td>{{ car.dailyPrice | currency}}</td>
          <td>{{ car.dailyPrice | vatAdded:18 | currency}}</td>
+         <td><Button class="btn btn-warning" routerLink="cars/update/{{car.carId}}">Güncelle</Button></td>
 
       </tr>
       </tbody>
-   </table>
+   </table> -->
 

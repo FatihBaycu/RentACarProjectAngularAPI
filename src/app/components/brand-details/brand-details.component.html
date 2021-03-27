@@ -1,0 +1,35 @@
+<div class="row mt-4">
+    <div class="col-lg-9">
+
+        <div class="card">
+            <div class="card-header fw-bold">
+                Marka Güncelle
+            </div>
+            <div class="card-body">
+                <form autocomplete="off" *ngIf="brand" [formGroup]="brandUpdateForm" (ngSubmit)="brandUpdate()">
+
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="brandName" placeholder="brandName"
+                            formControlName="brandName">
+                        <label for="brandName">Marka Adı</label>
+                    </div>
+
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary rounded-0 px-4 fw-bold">Güncelle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3">
+        <div class="d-grid">
+            <button class="btn btn-primary rounded-0" routerLink="/brands/add">
+                <i class="bi-list me-1"></i> Marka Listesine Geri Dön
+            </button>
+        </div>
+    </div>
+</div>

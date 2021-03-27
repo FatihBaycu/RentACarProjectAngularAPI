@@ -1,0 +1,66 @@
+<div class="row mt-4">
+    <div class="col-lg-9">
+
+        <div class="card">
+            <div class="card-header fw-bold">
+                Araba Güncelle
+            </div>
+            <div class="card-body">
+                <form autocomplete="off" *ngIf="car" [formGroup]="carUpdateForm" (ngSubmit)="carUpdate()">
+
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="brandId" placeholder="brandId"
+                            formControlName="brandId">
+                        <label for="brandId">Marka Id</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="colorId" placeholder="colorId"
+                            formControlName="colorId">
+                        <label for="colorId">Renk Id</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="modelYear" placeholder="modelYear"
+                            formControlName="modelYear">
+                        <label for="modelYear">Model Yılı</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="dailyPrice" placeholder="dailyPrice"
+                            formControlName="dailyPrice">
+                        <label for="dailyPrice">Günlük Ücret</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="description" placeholder="description"
+                            formControlName="description">
+                        <label for="description">Açıklama</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="carName" placeholder="carName"
+                            formControlName="carName">
+                        <label for="carName">Model Adı</label>
+                    </div>
+
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary rounded-0 px-4 fw-bold"> Güncelle </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-3">
+        <div class="d-grid">
+            <button class="btn btn-primary rounded-0" routerLink="/cars">
+                <i class="bi-list me-1"></i> Araba Listesine Geri Dön
+            </button>
+        </div>
+    </div>
+</div>

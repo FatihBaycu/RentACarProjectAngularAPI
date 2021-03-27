@@ -9,5 +9,6 @@ export interface CarDetail{
     carId:number;
     colorId:number;
     brandId:number;
+    imagePath:string;
     
 }

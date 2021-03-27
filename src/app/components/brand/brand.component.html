@@ -18,6 +18,9 @@
       <option *ngFor="let brand of brands |brandPipe:filterText"  (click)="setCurrentBrand(brand.brandId)">{{brand.brandName}}</option>
     </select>
     <br>
+    
+    <button class="btn btn-warning rounded-0" routerLink="/brands/add">Marka <strong>Ekle,Güncelle</strong></button>
+
 
     <!-- <input type="text"         
     (ngModelChange)="filterItem($event)" 

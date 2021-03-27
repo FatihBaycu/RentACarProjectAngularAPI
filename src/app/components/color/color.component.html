@@ -17,6 +17,7 @@
       <option  routerLink="/colors" (click)="resetCurrentColor()">Tüm Renkler</option>
       <option *ngFor="let color of colors |colorPipe:filterText"  (click)="setCurrentColor(color.colorId)">{{color.colorName}}</option>
     </select><br>
+    <button class="btn btn-warning rounded-0" routerLink="/colors/add">Renk <strong>Ekle,Güncelle</strong></button>
 
     <!-- <div class="form-group">
       <input type="text" class="form-control" placeholder="Renk Ekle"><br>

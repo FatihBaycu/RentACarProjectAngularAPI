@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms'
 import { BrandService } from 'src/app/services/brand/brand.service';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand/brand';
 
 @Component({
   selector: 'app-brand-add',
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BrandAddComponent implements OnInit {
 
   brandAddForm:FormGroup;
+  brands:Brand[];
 
   constructor(
     private formBuilder:FormBuilder,
@@ -20,6 +22,7 @@ export class BrandAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBrandAddForm();
+    this.getBrands();
   }
 
   createBrandAddForm(){
@@ -28,6 +31,11 @@ export class BrandAddComponent implements OnInit {
     })
   }
 
+    getBrands(){
+      this.brandService.getBrands().subscribe(response=>{
+        this.brands=response.data;
+      })
+    }
 
   BrandAdd(){
     if(this.brandAddForm.valid){
@@ -35,7 +43,19 @@ export class BrandAddComponent implements OnInit {
       this.brandService.addBrand(brandModel).subscribe((response)=>{
         console.log(brandModel);
         this.toastrService.success("Marka Eklendi.");
-            })
+            },
+            responseError=>{
+              if(responseError.error.Errors.length>0){
+                console.log(responseError.error.Errors);
+
+                for(let i=0; i<responseError.error.Errors.length; i++){
+                  this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Başarısız");
+                }
+               
+              } 
+              else{this.toastrService.error("Formunuz Eksik Dikkat.");}
+            }
+            )
     }
   }
 }

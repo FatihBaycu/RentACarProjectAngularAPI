@@ -1,57 +1,55 @@
-<div>
+<!-- <form [formGroup]="colorUpdateForm" (ngSubmit)="colorUpdate()" >
 
-    <table class="table table-hover table-striped mt-4 border">
-        <thead>
-        <tr>
-           <th>Color Id</th>
-           <th>Color Name</th>
-           <th>Color Code</th>
-  
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let color of colors"  routerLink="">
-           <th>{{ color.colorId }}</th>
-           <td>{{ color.colorName  }} </td>
-           <td>{{ color.colorCode }}</td>
-          
-  
-        </tr>
-        </tbody>
-     </table>
-</div>
+    <div class="mb-3">
+        <input type="text" class="form-control" formControlName="colorName">
+    </div>
+
+    <div class="mb-3">
+        <input type="text" class="form-control" formControlName="colorCode">
+    </div>
+
+    <button class="btn btn-primary" >Güncelle</button>
+</form> -->
 
 
-<br>
-<div class="content">
-    <div class="col-md-12">
+<div class="row mt-4">
+    <div class="col-lg-9">
+
         <div class="card">
-            <div class="card-header">
-                <h5>Renk Ekle</h5>
+            <div class="card-header fw-bold">
+                Renk Güncelle
             </div>
             <div class="card-body">
-                <form [formGroup]="colorAddForm">
-                    <div class="mb-3">
-                    <label for="colorName">Renk Adı</label>
-                    <div class="form-group">
-                        <input type="text" id="colorName" formControlName="colorName" class="form-control" placeholder="Renk Adı"/>
-                    </div></div>
+                <form autocomplete="off" *ngIf="color" [formGroup]="colorUpdateForm" (ngSubmit)="colorUpdate()">
+
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="colorName" placeholder="colorName"
+                            formControlName="colorName">
+                        <label for="colorName">Renk Adı</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="colorCode" placeholder="colorCode"
+                            formControlName="colorCode">
+                        <label for="colorCode">Renk Kodu</label>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary rounded-0 px-4 fw-bold"> Güncelle </button>
+                    </div>
                 </form>
             </div>
-            <div class="card-body">
-                <form [formGroup]="colorAddForm">
-                    <div class="mb-3">
-                    <label for="colorCode">Renk Kodu</label>
-                    <div class="form-group">
-                        <input type="text" id="colorName" formControlName="colorCode" class="form-control" placeholder="Renk Kodu"/>
-                    </div></div>
-                </form>
-            </div>
-            <div class="mb-3">
-                <label for="colorAdd"></label>
-                <div class="form-group">
-                    <button  (click)="colorAdd()"  class="btn btn-success">Ekle</button>
-                </div></div>
+        </div>
+
+    </div>
+    <div class="col-lg-3">
+        <div class="d-grid">
+            <button class="btn btn-primary rounded-0" routerLink="/colors/add">
+                <i class="bi-list me-1"></i> Renk Listesine Geri Dön
+            </button>
         </div>
     </div>
 </div>
