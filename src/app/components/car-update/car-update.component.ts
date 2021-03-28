@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand/brand';
 import { Car } from 'src/app/models/car/car';
 import { CarDetail } from 'src/app/models/carDetail/carDetail';
+import { Color } from 'src/app/models/color/color';
+import { BrandService } from 'src/app/services/brand/brand.service';
 import { CarService } from 'src/app/services/car/car.service';
+import { ColorService } from 'src/app/services/color/color.service';
 
 @Component({
   selector: 'app-car-update',
@@ -16,14 +20,20 @@ export class CarUpdateComponent implements OnInit {
   car!:Car;
   carDetails:CarDetail;
   carUpdateForm:FormGroup;
+  colors:Color[];
+  brands:Brand[];
   constructor(
     private carService:CarService,
     private activatedRoute:ActivatedRoute,
     private formBuilder:FormBuilder,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,
+    private colorService:ColorService,
+    private brandService:BrandService) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
        this.getCarById(param['carId']);
+       this.getBrands();
+       this.getColors();
     });
  }
 
@@ -44,6 +54,10 @@ export class CarUpdateComponent implements OnInit {
        carName: [this.car.carName,Validators.required],
     });
  }
+
+ getColors(){this.colorService.getColors().subscribe(response=>{this.colors=response.data;})}
+ getBrands(){this.brandService.getBrands().subscribe(response=>{this.brands=response.data;})}
+
 
   carUpdate() {
     let car: Car = this.carUpdateForm.value

@@ -1,4 +1,32 @@
-<div>
+<form [formGroup]="addRentCarForm" (ngSubmit)="checkCarRentable()">
+  <div class="row">
+     <div class="col-lg-6">
+        <div class="form-floating mb-3">
+           <input type="datetime-local" class="form-control" id="rentDate"
+                  formControlName="rentDate" placeholder="rentDate">
+           <label for="rentDate">Kiralama Tarihi</label>
+        </div>
+     </div>
+
+     <div class="col-lg-6">
+        <div class="form-floating">
+           <input type="datetime-local" class="form-control" id="returnDate"
+                  formControlName="returnDate" placeholder="returnDate">
+           <label for="returnDate">Dönüş Tarihi</label>
+        </div>
+     </div>
+  </div>
+
+  <div class="text-end">
+     <button *ngIf="carId" class="btn btn-sm btn-primary"  >
+        <i class="bi-credit-card-fill me-1"></i> Kirala
+     </button>
+  </div>
+</form>
+
+
+
+<!-- <div>
   <button
     type="button"
     class="btn btn-primary"
@@ -26,6 +54,7 @@
           aria-label="Close"
         ></button>
       </div>
+
       <div class="modal-body">
         <div class="form-group row mb-2">
           <label for="example-date-input" class="col-4 col-form-label"
@@ -36,10 +65,11 @@
               type="text"
               disabled="disabled"
               class="form-control"
-             
+             value=""
             />
           </div>
         </div>
+
         <div class="form-group row mb-2">
           <label for="example-date-input" class="col-4 col-form-label"
             >Müşteri</label
@@ -47,7 +77,7 @@
           <div class="col-8">
             <select class="form-select" [(ngModel)]="customerId">
               <option [value]="customer.customerId"
-                *ngFor="let customer of customerDetails"
+                *ngFor="let customer of customers"
               >
                 {{ customer.firstName }} {{ customer.lastName }} |
                 {{ customer.companyName }}
@@ -55,6 +85,7 @@
             </select>
           </div>
         </div>
+
         <div class="form-group row mb-2">
           <label for="example-date-input" class="col-4 col-form-label"
             >Başlangıç</label
@@ -90,7 +121,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>  -->
 
 <!-- 
 <table class="table">
@@ -115,3 +146,37 @@
 
     </tr>
 </table> -->
+
+
+
+
+<!-- <div *ngIf='carDetails' class="modal-dialog" id="rentModel">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        Car to Rent : "{{ carDetails.carName }}"
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form  [formGroup]="rentAddForm">
+        <div  class="mb-3">
+          <label for="rent-date" class="col-form-label">Rent Date:</label>
+          <input  min="{{minRentDate}}" type="date" class="form-control" id="rent-date" formControlName="rentDate" />
+        </div>
+        <div class="mb-3">
+          <label for="return-date" class="col-form-label">Return Date:</label>
+          <input  [readonly]="!rentAddForm.controls['rentDate'].valid" [min]="rentAddForm.controls['rentDate'].value" type="date" class="form-control" id="return-date" formControlName="returnDate" />
+        </div>
+      </form>
+      
+    </div>
+    <div *ngIf='!IsRentable.isSuccess'name="fieldName" ngDefaultControl  [ngModel]='IsRentable' class="alert alert-danger">{{IsRentable.message}}</div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <button type="button" class="btn btn-primary" (click)="goToPayment()">Rent</button>
+    </div>
+  </div>
+</div> -->

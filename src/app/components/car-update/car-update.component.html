@@ -7,21 +7,32 @@
             </div>
             <div class="card-body">
                 <form autocomplete="off" *ngIf="car" [formGroup]="carUpdateForm" (ngSubmit)="carUpdate()">
-
-
-
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="brandId" placeholder="brandId"
+                        <!-- <input type="text" class="form-control" id="brandId" placeholder="brandId"
                             formControlName="brandId">
                         <label for="brandId">Marka Id</label>
+                    </div> -->
+                    <select class="form-select" id="brands" formControlName="brandId">
+                        <option value="">-- Marka Seçiniz --</option>
+   
+                        <option *ngFor="let brand of brands" [value]="brand.brandId">
+                           {{brand.brandName}}
+                        </option>
+                     </select>
+                     <label for="brands">Markalar</label>
                     </div>
 
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="colorId" placeholder="colorId"
-                            formControlName="colorId">
-                        <label for="colorId">Renk Id</label>
-                    </div>
+                        <select class="form-select" id="colors" formControlName="colorId">
+                           <option value="">-- Renk Seçiniz --</option>
+      
+                           <option *ngFor="let color of colors" [value]="color.colorId">
+                              {{ color.colorName }}
+                           </option>
+                        </select>
+                        <label for="colors">Renkler</label>
+                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="modelYear" placeholder="modelYear"

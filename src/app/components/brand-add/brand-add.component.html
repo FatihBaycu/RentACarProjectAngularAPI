@@ -5,6 +5,7 @@
         <tr>
            <th>Marka Id</th>
            <th>Marka Adı</th>
+           <th></th>
       
   
         </tr>
@@ -13,6 +14,7 @@
         <tr *ngFor="let brand of brands"  routerLink="/brands/{{brand.brandId}}">
            <th>{{ brand.brandId }}</th>
            <th>{{ brand.brandName }}</th>
+           <td><button class="btn btn-warning">Güncelle</button></td>
 
         </tr>
         </tbody>
