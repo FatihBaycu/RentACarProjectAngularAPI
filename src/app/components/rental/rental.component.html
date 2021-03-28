@@ -18,7 +18,8 @@
   </div>
 
   <div class="text-end">
-     <button *ngIf="carId" class="btn btn-sm btn-primary"  >
+
+    <button *ngIf="carId" (click)="setRentingCar()" class="btn btn-sm btn-primary"  >
         <i class="bi-credit-card-fill me-1"></i> Kirala
      </button>
   </div>

@@ -13,7 +13,7 @@ import { CarService } from 'src/app/services/car/car.service';
 })
 export class CarDetailComponent implements OnInit {
 
-  carDetail: CarDetail;
+   carDetail: CarDetail;
    carImages: CarImage[] = [];
    imageBaseUrl = "https://localhost:44342/";
    currentImage:CarImage;

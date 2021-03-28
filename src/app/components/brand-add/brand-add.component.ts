@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms'
 import { BrandService } from 'src/app/services/brand/brand.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ export class BrandAddComponent implements OnInit {
 
   brandAddForm:FormGroup;
   brands:Brand[];
-
+  
   constructor(
     private formBuilder:FormBuilder,
     private brandService:BrandService,
@@ -59,3 +59,5 @@ export class BrandAddComponent implements OnInit {
     }
   }
 }
+
+

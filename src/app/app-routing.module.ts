@@ -10,6 +10,7 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorDetailsComponent } from './components/color-details/color-details.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 // const routes: Routes = [
 //   { path: 'rentals', component: RentalComponent },
@@ -38,6 +39,8 @@ const routes: Routes = [
   {path:'colors/:colorId',component:ColorDetailsComponent},
   {path:'brands/:brandId',component:BrandDetailsComponent},
   {path:'cars/update/:carId',component:CarUpdateComponent},
+  {path:'payments',component:PaymentComponent},
+
   // { path: "cars/filter/:colorId",component:CarComponent},
   // { path: "cars/filter/:brandId",component:CarComponent},
   // { path: 'brands/:brandId', component: CarComponent },

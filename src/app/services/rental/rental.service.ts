@@ -52,6 +52,6 @@ export class RentalService {
     return this.rentingCar;
   }
   removeRentingCar() {
-     this.rentingCar;
+     this.rentingCar=null;
   }
 }

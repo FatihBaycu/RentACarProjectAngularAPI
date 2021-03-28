@@ -10,6 +10,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

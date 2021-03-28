@@ -37,7 +37,7 @@
       <ul class="list-group list-group-flush">
          <li class="list-group-item">Günlük Fiyat: <strong>{{car.dailyPrice | currency:'TL'}}</strong></li>
             <li class="list-group-item">Kdv'li Fiyat: <strong>{{car.dailyPrice | vatAdded:18 | currency:'TL'}}</strong></li>
-            <li class="list-group-item"><Button class="btn btn-warning" routerLink="cars/update/{{car.carId}}">Güncelle</Button></li>
+            <li class="list-group-item"><Button class="btn btn-warning" routerLink="/cars/update/{{car.carId}}">Güncelle</Button></li>
 
          </ul>
          </div>

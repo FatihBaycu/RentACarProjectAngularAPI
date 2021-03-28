@@ -65,5 +65,4 @@ export class CarService {
           let newPath=this.apiUrl+"cars/updatecar";
           return this.httpClient.put<ResponseModel>(newPath,car);
         }
-
   }
