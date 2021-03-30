@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails';
 import { Rental } from 'src/app/models/rental/rental';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
 
 @Component({
@@ -11,10 +13,15 @@ import { RentalService } from 'src/app/services/rental/rental.service';
   styleUrls: ['./rental.component.css'],
 })
 export class RentalComponent implements OnInit {
+
   rental: Rental;
   carId: number;
   addRentCarForm: FormGroup;
   currentDate: Date = new Date();
+  customer:CustomerDetails;
+  customers:CustomerDetails[];
+  //currentCustomerId:number;
+  currentCustomerId:number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,24 +29,38 @@ export class RentalComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private rentalService: RentalService,
-    private router: Router
+    private router: Router,
+    private customerService:CustomerService
   ) {}
 
   ngOnInit(): void {
     this.carId = Number(this.activatedRoute.snapshot.paramMap.get('carId'));
     this.createAddRentCarForm();
+    this.getCustomers();
   }
+
+  setRentingCar2(){
+    console.log(this.getCustomerDetailById(this.currentCustomerId));
+    this.toastrService.success("sad");
+  }
+
+  setCurrentCustomer(customerId:number){this.currentCustomerId=customerId;}
+  
+  getCustomerDetailById(customerId:number){this.customerService.getCustomerById(customerId).subscribe((response)=>{this.customer=response.data;console.log("müşteri bilgileri: "+this.customer.firstName);})}
+  
+  getCustomers(){this.customerService.getCustomerDetails().subscribe((response)=>{this.customers=response.data})}
 
   createAddRentCarForm() {
     this.addRentCarForm = this.formBuilder.group({
       carId: [this.carId, Validators.required],
-      customerId: [1, Validators.required],
+      customerId: [this.currentCustomerId, Validators.required],
       rentDate: ['', Validators.required],
       returnDate: ['', Validators.required],
     });
   }
 
   setRentingCar() {
+    console.log("Müşteri Id:",this.currentCustomerId);
     if (this.addRentCarForm.invalid) {
       this.toastrService.warning('Alanları kontrol ediniz', 'Dikkat');
 

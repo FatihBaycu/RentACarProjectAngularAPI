@@ -13,7 +13,7 @@
     </div> 
 
 
-    <select class="form-select" size="3" >
+    <select class="form-select" size="4" >
       <option  routerLink="/brands" (click)="resetCurrentBrandId()">Tüm Markalar</option>
       <option *ngFor="let brand of brands |brandPipe:filterText"  (click)="setCurrentBrand(brand.brandId)">{{brand.brandName}}</option>
     </select>

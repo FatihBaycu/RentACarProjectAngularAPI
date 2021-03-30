@@ -13,7 +13,7 @@
     {{filterText}} Aradınız
     </div> 
 
-    <select class="form-select" size="3" >
+    <select class="form-select" size="4" >
       <option  routerLink="/colors" (click)="resetCurrentColor()">Tüm Renkler</option>
       <option *ngFor="let color of colors |colorPipe:filterText"  (click)="setCurrentColor(color.colorId)">{{color.colorName}}</option>
     </select><br>
