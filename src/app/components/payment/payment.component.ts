@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
@@ -21,29 +21,21 @@ export class PaymentComponent implements OnInit {
     private customerService:CustomerService,
     private formBuilder:FormBuilder) { }
   
-  cars:CarDetail;
-  car:Car[]=[];
-  customer:CustomerDetails;
+  carDetail:CarDetail;
   rentalAddForm:FormGroup;
+  customer:CustomerDetails;
 
-  ngOnInit(): void {
-    this.getRentableCar();
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['customerId']) {
-        this.getCustomerById(params['customerId']);
-      }
-
-      if (params['carId']) {
-         this.getCarById(params['carId']);
-      }
-   });
-   this.createRentalAddForm();
+  ngOnInit(): void {   
+    this.customer=this.customerService.getCustomer();
+    this.createRentalAddForm();
+    let carId=this.activatedRoute.snapshot.paramMap.get('carId');
+    this.getCarById(Number(carId));
   }
 
-    
   createRentalAddForm(){
+  
     this.rentalAddForm=this.formBuilder.group({
-      firstName:["",Validators.required]
+      firstName:[this.customer.firstName,Validators.required]
     })
   }
 
@@ -51,9 +43,37 @@ export class PaymentComponent implements OnInit {
    // console.log(this.rentalService.getRentingCar());
   }
 
-  getCarById(carId:number){this.carService.getCarById(carId).subscribe((response)=>{this.cars=response.data;console.log(response.data);});}
-  getCustomerById(customerId:number){this.customerService.getCustomerById(customerId).subscribe((response)=>{this.customer=response.data;console.log(response.data);})}
-
+  getCarById(carId:number){
+    this.carService.getCarById(carId).subscribe((response)=>{
+      this.carDetail=response.data;
+      console.log(this.customer);
+      console.log(this.carDetail);
+      
+    });}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  // getCustomerById(customerId:number){
+  //   this.customerService.getCustomerById(10).subscribe((response)=>{
+  //     this.customer=response.data;
+  //     console.log("Müşteri: "+response.data);
+  //   })}
   RentalAdd(){}
-
 }

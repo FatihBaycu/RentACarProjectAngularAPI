@@ -17,15 +17,17 @@
      </div>
   </div>
   
-  <select class="form-select">
-    <option *ngFor="let customer of customers" (click)="setCurrentCustomer(customer.customerId)">{{customer.customerId}}-{{customer.firstName}} {{customer.lastName}}
+  <select class="form-select" formControlName="customerId">
+    <option value=0 >Lütfen Müşteri Seçiniz</option>
+    <option *ngFor="let customer of customers" [ngValue]="customer.customerId" (click)="setCurrentCustomer(customer.customerId)">{{customer.customerId}}-{{customer.firstName}} {{customer.lastName}}
     </option>
   </select>
 
   <div class="text-end">
 
 
-    <button *ngIf="carId" (click)="setRentingCar()" routerLink="/cars/payments/{{carId}}" class="btn btn-sm btn-primary"  >
+    <button *ngIf="carId" (click)="setRentingCar()"
+      class="btn btn-sm btn-primary"  >
         <i class="bi-credit-card-fill me-1"></i> Kirala
      </button>
 

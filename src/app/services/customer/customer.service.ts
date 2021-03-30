@@ -12,6 +12,8 @@ import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 export class CustomerService {
 
   apiUrl="https://localhost:44342/api/customers/";
+  currentCustomer:CustomerDetails;
+  
 
   constructor(private httpClient:HttpClient) { }
 
@@ -29,4 +31,13 @@ export class CustomerService {
       let newPath=this.apiUrl+"getcustomerdetailbyid?customerId="+customerId;
       return this.httpClient.get<SingleResponseModel<CustomerDetails>>(newPath);
     }
+  
+    setCustomer(customer:CustomerDetails){
+      this.currentCustomer=customer;
+    }
+
+    getCustomer():CustomerDetails{
+      return this.currentCustomer;
+    }
+
   }

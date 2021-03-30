@@ -249,15 +249,17 @@
 
 
 
-  <div class="content">
+  <div *ngIf="customer" class="content" >
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header"><h5>Renk Ekle</h5></div>
+            <div class="card-header"><h5>Ad</h5></div>
 
             <div class="card-body">
                 <form [formGroup]="rentalAddForm"><div class="mb-3"><label for="firstName">Adı</label><div class="form-group">
-                        <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="Ad"/></div></div>
-                </form></div>
+                        <input type="text" id="firstName" formControlName="firstName"  class="form-control" placeholder="Ad"/>
+                      </div></div>
+                </form>
+              </div>
 
           
             <div class="mb-3"><label for="colorAdd"></label><div class="form-group"><button (click)="RentalAdd()" class="btn btn-success">Ekle</button></div></div>

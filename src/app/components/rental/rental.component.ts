@@ -37,6 +37,7 @@ export class RentalComponent implements OnInit {
     this.carId = Number(this.activatedRoute.snapshot.paramMap.get('carId'));
     this.createAddRentCarForm();
     this.getCustomers();
+    //this.getCustomerDetailById();
   }
 
   setRentingCar2(){
@@ -46,24 +47,32 @@ export class RentalComponent implements OnInit {
 
   setCurrentCustomer(customerId:number){this.currentCustomerId=customerId;}
   
-  getCustomerDetailById(customerId:number){this.customerService.getCustomerById(customerId).subscribe((response)=>{this.customer=response.data;console.log("müşteri bilgileri: "+this.customer.firstName);})}
+  getCustomerDetailById(customerId:number){
+    console.log(this.addRentCarForm.value);
+    this.customerService.getCustomerById(this.addRentCarForm.value.customerId).subscribe((response)=>{
+      this.customer=response.data;
+      console.log("müşteri bilgileri: "+this.customer.firstName);
+    })}
   
+
+
   getCustomers(){this.customerService.getCustomerDetails().subscribe((response)=>{this.customers=response.data})}
 
   createAddRentCarForm() {
     this.addRentCarForm = this.formBuilder.group({
       carId: [this.carId, Validators.required],
-      customerId: [this.currentCustomerId, Validators.required],
+      customerId: [0, Validators.required],
       rentDate: ['', Validators.required],
       returnDate: ['', Validators.required],
     });
   }
 
-  setRentingCar() {
-    console.log("Müşteri Id:",this.currentCustomerId);
+  setRentingCar() {   
+      //console.log("Müşteri Id:",this.addRentCarForm.value.customerId);
+       this.getCustomerDetailById(this.addRentCarForm.value.customerId);
+
     if (this.addRentCarForm.invalid) {
       this.toastrService.warning('Alanları kontrol ediniz', 'Dikkat');
-
       return false;
     }
 
@@ -88,8 +97,8 @@ export class RentalComponent implements OnInit {
       return false;
     }
     this.rentalService.setRentingCar(this.rental);
-
     return true;
+    //return this.router.navigate(['/payments/'+this.carId]);
   }
 
   checkCarRentable() {
@@ -100,6 +109,7 @@ export class RentalComponent implements OnInit {
           this.setRentingCar();
 
           return true;
+
         }
 
         let lastItem = responseSuccess.data[responseSuccess.data.length - 1];
@@ -109,6 +119,7 @@ export class RentalComponent implements OnInit {
         }
 
         let returnDate = new Date(lastItem.returnDate);
+        
         this.setRentingCar();
 
         if (new Date(this.rental.rentDate) < returnDate) {
@@ -118,9 +129,13 @@ export class RentalComponent implements OnInit {
             'Dikkat'
           );
         }
-
+        
+        this.customerService.setCustomer(this.customer);
+        
         this.toastrService.success('Ödeme sayfasına yönlendiriliyorsunuz');
-        return this.router.navigate(['/payments']);
+        console.log("adfasfdasf");
+        this.router.navigate(['/payments/'+this.carId]);
+      return true;
       });
   }
 }
