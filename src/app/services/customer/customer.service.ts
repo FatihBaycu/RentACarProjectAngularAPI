@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
+import { RecursiveTemplateAstVisitor } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/models/customer/customer';
 import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 @Injectable({
@@ -39,5 +41,14 @@ export class CustomerService {
     getCustomer():CustomerDetails{
       return this.currentCustomer;
     }
+    getCustomerByEmail(email:string):Observable<SingleResponseModel<CustomerDetails>>{
+      let newPath=this.apiUrl+"getcustomerbyemail?email="+email;
+      return this.httpClient.get<SingleResponseModel<CustomerDetails>>(newPath);
+    }
 
+    userUpdate(customer:Customer):Observable<ResponseModel>{
+      let newPath="https://localhost:44342/api/users/updateuser";
+      return this.httpClient.post<ResponseModel>(newPath,customer);
+
+    }
   }

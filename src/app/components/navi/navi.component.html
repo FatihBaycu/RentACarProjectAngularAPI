@@ -12,19 +12,30 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
-          <li class="nav-item dropdown">
+
+
+          <li class="nav-item dropdown" *ngIf="kontrol" >
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              {{name}} 
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+            <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="user-profile">Profil</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a  class="dropdown-item" href="#"> </a></li>
             </ul>
           </li>
+
+
+
+          <li class="nav-item" >
+            <a class="nav-link " href="#" tabindex="-1" *ngIf="!kontrol"  routerLink="/login" ><strong>Giriş Yap</strong></a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link " href="#" tabindex="-1"  *ngIf="kontrol" (click)="logout()"  routerLink="/cars" ><strong>Çıkış Yap</strong></a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link " href="#" tabindex="-1" *ngIf="!kontrol" routerLink="/register"><strong>Kayıt Ol</strong></a>
           </li>
         </ul>
         <form class="d-flex">

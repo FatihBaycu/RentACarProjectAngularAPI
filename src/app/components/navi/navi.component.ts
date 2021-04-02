@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LocalStroageService } from 'src/app/services/local-stroage.service';
 
 @Component({
   selector: 'app-navi',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localStorageService:LocalStroageService,private toastrService:ToastrService,private router:Router) { }
+  kontrol:any;
+  check:boolean;
 
-  ngOnInit(): void {
+  name?:string;
+  ngOnInit(): void { 
+
+      this.localStorageService.getCurrentCustomer();
+      this.name=this.localStorageService.getCurrentCustomer().firstName;
+    
+        console.log(this.localStorageService.getItem("isauth"));
+        this.kontrol=this.localStorageService.getItem("isauth");
+
+  }
+  logout(){
+    this.localStorageService.setItem("isauth",false);
+
+        localStorage.clear();
+        console.log("Çıkış Yapıldı");
+        this.router.navigate(['cars'])
+        .then(() => {
+          window.location.reload();
+        });
   }
 
 }

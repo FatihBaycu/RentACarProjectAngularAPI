@@ -1,0 +1,43 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Profil Güncelle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="userUpdateForm">
+
+                    <div class="mb-3">
+                    <label for="firstName">Ad</label>
+                    <div class="form-group">
+                        <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="Adınız"/>
+                    </div></div>
+
+                    <div class="mb-3">
+                        <label for="lastName">Soyad</label>
+                        <div class="form-group">
+                            <input type="text" id="lastName" formControlName="lastName" class="form-control" placeholder="Soyadınız"/>
+                        </div></div>
+
+
+                        <div class="mb-3">
+                            <label for="email">Email</label>
+                            <div class="form-group">
+                                <input type="text" id="email" formControlName="email" class="form-control" placeholder="Email"/>
+                            </div></div>
+
+                            <div class="mb-3">
+                                <label for="password">Şifre</label>
+                                <div class="form-group">
+                                    <input type="password" id="password" formControlName="password" class="form-control" placeholder="Şifreniz"/>
+                                </div></div>
+                </form>
+            </div>
+      
+            <div class="mb-3">
+                <label for="userUpdate"></label>
+                <div class="form-group">
+                    <button  (click)="userUpdate()"  class="btn btn-warning">Güncelle</button>
+                </div></div>
+        </div>
+    </div>

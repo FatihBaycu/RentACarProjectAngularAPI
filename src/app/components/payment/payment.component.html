@@ -255,9 +255,41 @@
             <div class="card-header"><h5>Ad</h5></div>
 
             <div class="card-body">
-                <form [formGroup]="rentalAddForm"><div class="mb-3"><label for="firstName">Adı</label><div class="form-group">
+                <form [formGroup]="rentalAddForm">
+
+                  <div class="mb-3"><label for="carId">Adı</label><div class="form-group">
+                    <input type="text" id="carId" formControlName="carId"  class="form-control" placeholder="CarID"/>
+                  </div></div>
+
+
+                  <div class="mb-3"><label for="firstName">Adı</label><div class="form-group">
                         <input type="text" id="firstName" formControlName="firstName"  class="form-control" placeholder="Ad"/>
                       </div></div>
+
+                      <div class="mb-3"><label for="brandName">Adı</label><div class="form-group">
+                        <input type="text" id="brandName" formControlName="brandName"  class="form-control" placeholder="Marka"/>
+                      </div></div>
+
+                      <div class="mb-3"><label for="colorName">Adı</label><div class="form-group">
+                        <input type="text" id="colorName" formControlName="colorName"  class="form-control" placeholder="Renk"/>
+                      </div></div>
+
+                      <div class="mb-3"><label for="modelYear">Adı</label><div class="form-group">
+                        <input type="text" id="modelYear" formControlName="modelYear"  class="form-control" placeholder="Model Yılı"/>
+                      </div></div>
+
+                      <div class="mb-3"><label for="description">Adı</label><div class="form-group">
+                        <input type="text" id="description" formControlName="description"  class="form-control" placeholder="Açıklama"/>
+                      </div></div>
+
+                      <div class="mb-3"><label for="rentDate">Adı</label><div class="form-group">
+                        <input type="text" id="rentDate" formControlName="rentDate"  class="form-control" placeholder="Rent Date"/>
+                      </div></div>
+
+                      <div class="mb-3"><label for="returnDate">Adı</label><div class="form-group">
+                        <input type="text" id="returnDate" formControlName="returnDate"  class="form-control" placeholder="Return Date"/>
+                      </div></div>
+
                 </form>
               </div>
 

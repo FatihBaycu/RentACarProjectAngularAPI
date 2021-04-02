@@ -11,6 +11,10 @@ import { ColorDetailsComponent } from './components/color-details/color-details.
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import {LoginGuard} from './guards/login.guard';
+import {UserProfileComponent} from './components/user-profile/user-profile.component';
 
 // const routes: Routes = [
 //   { path: 'rentals', component: RentalComponent },
@@ -27,25 +31,32 @@ import { PaymentComponent } from './components/payment/payment.component';
 
 
 const routes: Routes = [
-  { path:'rentals', component: RentalComponent },
-  { path:'customers', component: CustomerComponent},
-  { path:'cars', component: CarComponent },
+  { path:'rentals', component: RentalComponent ,canActivate:[LoginGuard]},
+  { path:'customers', component: CustomerComponent,canActivate:[LoginGuard]},
+  { path:"cars", component: CarComponent },
   { path:'cars/detail/:carId', component: CarDetailComponent },
   { path:"cars/filter/:brandId/:colorId",component:CarComponent},
   { path:'rentals/:carId',component:RentalComponent},
-  {path:'brands/add',component:BrandAddComponent},
-  {path:'colors/add',component:ColorAddComponent},
-  {path:'cars/add',component:CarAddComponent},
+  {path:'brands/add',component:BrandAddComponent,canActivate:[LoginGuard]},
+  {path:'colors/add',component:ColorAddComponent,canActivate:[LoginGuard]},
+  {path:'cars/add',component:CarAddComponent,canActivate:[LoginGuard]},
   {path:'colors/:colorId',component:ColorDetailsComponent},
   {path:'brands/:brandId',component:BrandDetailsComponent},
-  {path:'cars/update/:carId',component:CarUpdateComponent},
-  {path:'payments/:carId',component:PaymentComponent},
+  {path:'cars/update/:carId',component:CarUpdateComponent,canActivate:[LoginGuard]},
+  {path:'payments/:carId',component:PaymentComponent,canActivate:[LoginGuard]},
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'user-profile',component:UserProfileComponent,canActivate:[LoginGuard]},
+
+
 
 
   // { path: "cars/filter/:colorId",component:CarComponent},
   // { path: "cars/filter/:brandId",component:CarComponent},
   // { path: 'brands/:brandId', component: CarComponent },
   // { path: 'colors/:colorId', component: CarComponent },
+
+
   { path: '**',  pathMatch: 'full',component:CarComponent}
 
 ];

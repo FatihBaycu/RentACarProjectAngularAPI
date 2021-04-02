@@ -24,18 +24,26 @@ export class PaymentComponent implements OnInit {
   carDetail:CarDetail;
   rentalAddForm:FormGroup;
   customer:CustomerDetails;
-
+   carId:any;
   ngOnInit(): void {   
     this.customer=this.customerService.getCustomer();
-    this.createRentalAddForm();
-    let carId=this.activatedRoute.snapshot.paramMap.get('carId');
-    this.getCarById(Number(carId));
+    this.carId=this.activatedRoute.snapshot.paramMap.get('carId');
+    this.getCarById(Number(this.carId));
+        this.createRentalAddForm();
+
   }
 
   createRentalAddForm(){
   
     this.rentalAddForm=this.formBuilder.group({
-      firstName:[this.customer.firstName,Validators.required]
+      carId:[this.carId,Validators.required],
+      firstName:[this.customer.firstName,Validators.required],
+      brandName:["marka",Validators.required],
+      colorName:["renk",Validators.required],
+      modelYear:["Yıl",Validators.required],
+      description:["açıklama",Validators.required],
+      rentDate:["rentDate",Validators.required],
+      returnDate:["returnDate",Validators.required]
     })
   }
 
