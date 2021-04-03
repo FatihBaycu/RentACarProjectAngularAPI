@@ -1,300 +1,99 @@
-<!-- <body class="bg-light">
+<div class="row">
+  <div class="col-md-6">
+    <div *ngIf="carDetail" class="card rounded-0">
+      <div class="card-header fw-bold text-center lead py-3">Fatura Bilgileri</div>
 
-    <div class="container">
-      <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Checkout form</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+      <div class="card-body p-0">
+        <table class="table table-striped">
+          <tbody>
+
+            <tr>
+              <th>Kullanıcı</th>
+              <td>{{ getCurrentCustomer().firstName }} {{ getCurrentCustomer().lastName }}</td>
+            </tr>
+
+            <tr>
+              <th>Araba Marka/Model</th>
+              <td>{{ carDetail.brandName }} {{carDetail.carName}}</td>
+            </tr>
+
+            <tr>
+              <th>Kiralama Tarihi</th>
+              <td>{{rental.rentDate}}</td>
+            </tr>
+
+            <tr>
+              <th>Teslim Tarihi</th>
+              <td>{{rental.returnDate}}</td>
+            </tr>
+
+            <tr>
+              <th>Total Price</th>
+              <td>{{ calcTotalPrice() | currency:'₺ ' }} </td>
+            </tr>
+
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
 
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-            </li>
-          </ul>
+  <div class="col-md-6">
+    <div class="card rounded-0">
+      <div class="card-header fw-bold text-center lead py-3">Kart Bilgileri</div>
 
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation"  novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="firstName">First Name</label>
-                <input type="text" *ngIf="customer" class="form-control" id="firstName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
+      <div class="card-body">
+        <form [formGroup]="paymentAddForm" (ngSubmit)="pay()">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nameOnCard" placeholder="nameOnCard" formControlName="nameOnCard">
+            <label for="nameOnCard">Kart Üzerindeki İsim</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="cardNumber" placeholder="cardNumber" formControlName="cardNumber">
+            <label for="cardNumber">Kart Numarası</label>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="validDate" placeholder="validDate" formControlName="validDate">
+                <label for="validDate">Geçerlilik Tarihi</label>
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="cvv" placeholder="cvv" formControlName="cvv">
+                <label for="cvv">Kart arkasında son üç hane</label>
               </div>
             </div>
-
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="state">State</label>
-                <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-          </form>
-        </div>
+          </div>
+          <div class="form-check">
+            <input #saveUserNameCheckBox class="form-check-input" type="checkbox"  id="saveUserNameCheckBox" 
+            [checked]="saveUsername" 
+            (change)="onSaveUsernameChanged(saveUserNameCheckBox.checked)"
+            >
+            <label class="form-check-label" for="flexCheckChecked">
+              Kart Bilgilerimi Kaydet
+            </label>
+          </div>
+          <div class="text-end">
+            <button class="btn btn-primary">Ödeme Yap</button>
+          </div>
+        </form>
       </div>
-
-      <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017-2018 Company Name</p>
-        <ul class="list-inline">
-          <li class="list-inline-item"><a href="#">Privacy</a></li>
-          <li class="list-inline-item"><a href="#">Terms</a></li>
-          <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
-      </footer>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">
+       <table class="table">
+         <tbody>
+           <tr> <th>Kayıtlı Kartlarım</th>
+           <th>Kayıtlı Kartınız Bulunmamaktadır.</th></tr>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../../../node_modules/jquery/dist/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <script>
-      (function() {
-        'use strict';
-
-        window.addEventListener('load', function() {
-          var forms = document.getElementsByClassName('needs-validation');
-
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    </script>
-  </body>
-
-
-
- -->
-
-
-
-
-  <div *ngIf="customer" class="content" >
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header"><h5>Ad</h5></div>
-
-            <div class="card-body">
-                <form [formGroup]="rentalAddForm">
-
-                  <div class="mb-3"><label for="carId">Adı</label><div class="form-group">
-                    <input type="text" id="carId" formControlName="carId"  class="form-control" placeholder="CarID"/>
-                  </div></div>
-
-
-                  <div class="mb-3"><label for="firstName">Adı</label><div class="form-group">
-                        <input type="text" id="firstName" formControlName="firstName"  class="form-control" placeholder="Ad"/>
-                      </div></div>
-
-                      <div class="mb-3"><label for="brandName">Adı</label><div class="form-group">
-                        <input type="text" id="brandName" formControlName="brandName"  class="form-control" placeholder="Marka"/>
-                      </div></div>
-
-                      <div class="mb-3"><label for="colorName">Adı</label><div class="form-group">
-                        <input type="text" id="colorName" formControlName="colorName"  class="form-control" placeholder="Renk"/>
-                      </div></div>
-
-                      <div class="mb-3"><label for="modelYear">Adı</label><div class="form-group">
-                        <input type="text" id="modelYear" formControlName="modelYear"  class="form-control" placeholder="Model Yılı"/>
-                      </div></div>
-
-                      <div class="mb-3"><label for="description">Adı</label><div class="form-group">
-                        <input type="text" id="description" formControlName="description"  class="form-control" placeholder="Açıklama"/>
-                      </div></div>
-
-                      <div class="mb-3"><label for="rentDate">Adı</label><div class="form-group">
-                        <input type="text" id="rentDate" formControlName="rentDate"  class="form-control" placeholder="Rent Date"/>
-                      </div></div>
-
-                      <div class="mb-3"><label for="returnDate">Adı</label><div class="form-group">
-                        <input type="text" id="returnDate" formControlName="returnDate"  class="form-control" placeholder="Return Date"/>
-                      </div></div>
-
-                </form>
-              </div>
-
-          
-            <div class="mb-3"><label for="colorAdd"></label><div class="form-group"><button (click)="RentalAdd()" class="btn btn-success">Ekle</button></div></div>
-        </div>
+         </tbody>
+       </table>
     </div>
+  </div>
 </div>

@@ -43,7 +43,7 @@ const routes: Routes = [
   {path:'colors/:colorId',component:ColorDetailsComponent},
   {path:'brands/:brandId',component:BrandDetailsComponent},
   {path:'cars/update/:carId',component:CarUpdateComponent,canActivate:[LoginGuard]},
-  {path:'payments/:carId',component:PaymentComponent,canActivate:[LoginGuard]},
+  {path:'payments',component:PaymentComponent,canActivate:[LoginGuard]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'user-profile',component:UserProfileComponent,canActivate:[LoginGuard]},

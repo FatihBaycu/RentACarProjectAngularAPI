@@ -43,33 +43,3 @@
 
  </div>
 </div>
- <!-- <table class="table table-hover table-striped mt-4 border">
-      <thead>
-      <tr>
-         <th class="text-center" style="width: 50px">id</th>
-         <th>Marka</th>
-         <th>Açıklama</th>
-         <th>Ad</th>
-         <th>Renk</th>
-         <th>Model Yılı</th>
-         <th>Günlük Ücret</th>
-         <th>Kdv'li Fiyat(%18)</th>
-         <th>Güncelle</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let car of carDetails | filterPipe:filterText"  routerLink="/cars/detail/{{ car.carId }}">
-         <th class="text-center">{{ car.carId }}</th>
-         <td>{{ car.brandName  }} </td>
-         <td>{{ car.description }}</td>
-         <td>{{ car.carName}}</td>
-         <td>{{ car.colorName }}</td>
-         <td>{{ car.modelYear }}</td>
-         <td>{{ car.dailyPrice | currency}}</td>
-         <td>{{ car.dailyPrice | vatAdded:18 | currency}}</td>
-         <td><Button class="btn btn-warning" routerLink="cars/update/{{car.carId}}">Güncelle</Button></td>
-
-      </tr>
-      </tbody>
-   </table> -->
-

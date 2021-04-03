@@ -6,7 +6,7 @@
             </div>
 
             <div class="card-body">
-                <form [formGroup]="loginForm">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="mb-3">
                             <label for="email">E-mail</label>
                             <div class="form-group">

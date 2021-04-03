@@ -8,9 +8,12 @@ import { ResponseModel } from 'src/app/models/responseModel';
 @Injectable({
   providedIn: 'root',
 })
+
 export class RentalService {
+
   apiUrl = 'https://localhost:44342/api/rentals/';
   rentingCar: Rental;
+
   constructor(private httpClient: HttpClient) {
     this.getRentals();
   }
@@ -20,15 +23,16 @@ export class RentalService {
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
-  addRental(): Observable<ListResponseModel<Rental>> {
+  addRental(rental: Rental): Observable<ListResponseModel<Rental>> {
     let newPath = this.apiUrl + 'addrental';
-    return this.httpClient.get<ListResponseModel<Rental>>(newPath);
+    return this.httpClient.post<ListResponseModel<Rental>>(newPath,rental);
   }
 
   checkCarStatus(rental: Rental): Observable<ResponseModel> {
     let newPath = this.apiUrl + 'checkcarstatus';
     return this.httpClient.post<ResponseModel>(newPath, rental);
   }
+
   add(rental: Rental): Observable<ResponseModel> {
     let newPath = this.apiUrl + 'add';
     return this.httpClient.post<ResponseModel>(newPath, rental);
@@ -46,12 +50,9 @@ export class RentalService {
 
   setRentingCar(rental: Rental) {
     this.rentingCar = rental;
- }
- 
+  }
+
   getRentingCar() {
     return this.rentingCar;
-  }
-  removeRentingCar() {
-     this.rentingCar=null;
   }
 }
