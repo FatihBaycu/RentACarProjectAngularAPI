@@ -39,7 +39,9 @@ export class CarUpdateComponent implements OnInit {
 
   getCarById(carId: number) {
     this.carService.getCarById(carId).subscribe((response) => {
-      this.car = response.data;
+      this.carDetails = response.data;
+      //this.car = response.data;
+
       this.createCarUpdateForm();
     });
   }

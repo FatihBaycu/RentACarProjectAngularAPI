@@ -99,15 +99,17 @@
              <th>Kart SKT</th>
              <th>Kart CVV</th>
              <th>Kart Tipi</th>
+             <th></th>
 
             </tr>
-           <tr *ngFor="let card of cards" href="">
+           <tr *ngFor="let card of cards"  >
              <td>{{card.id}}</td>
              <td>{{card.cardNumber}}</td>
              <td>{{card.cardOnName}}</td>
              <td>{{card.cardValidDate}}</td>
              <td>{{card.cardCvv}}</td>
              <td>{{card.cardType}}</td>
+             <td (click)="setCurrentCard(card.id)"><button class="btn btn-info">Seç</button></td>
             </tr>
          </tbody>
        </table>

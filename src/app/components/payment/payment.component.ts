@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -27,7 +28,9 @@ export class PaymentComponent implements OnInit {
   rental: Rental;
   card:Card;
   cards:Card[];
+  selectedCard:Card;
   saveUsername:boolean;
+  test="test";
 
 
 
@@ -83,9 +86,7 @@ export class PaymentComponent implements OnInit {
      
     }
 
-
-
-  pay() {
+    pay() {
     debugger
     console.log("Merhaba Dünya");
    
@@ -94,7 +95,9 @@ export class PaymentComponent implements OnInit {
       this.toastrService.success(responseSuccess.message, "Kiralama başarılı")
       this.router.navigate(['/cars']);
     }, responseError => {
-      console.log(responseError);
+      console.log(responseError)
+      this.toastrService.error(responseError.error.message,"Kiralama Başarısız");
+      
     });
   }
 
@@ -109,13 +112,12 @@ export class PaymentComponent implements OnInit {
 
     }
 
-
-
-
-
-
-
-
+    setCurrentCard(id:number){
+      this.cardService.getCardById(id).subscribe(response=>{
+        this.selectedCard=response.data;
+        console.log(this.selectedCard);
+      })
+    }
 
   getCurrentCustomer(): Customer {
     return this.localStorageService.getCurrentCustomer();

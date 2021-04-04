@@ -10,5 +10,6 @@ export interface CarDetail{
     colorId:number;
     brandId:number;
     imagePath:string;
+    carFindexPoint:number;
     
 }

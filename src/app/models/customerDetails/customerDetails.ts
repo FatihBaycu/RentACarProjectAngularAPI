@@ -8,4 +8,5 @@ export interface CustomerDetails {
     status:boolean;
     passwordHash: string;
     passwordSalt: string;
+    customerFindexNumber:number;
 }

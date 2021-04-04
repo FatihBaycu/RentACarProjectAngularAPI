@@ -15,10 +15,13 @@ export class NaviComponent implements OnInit {
   check:boolean;
 
   name?:string;
+  customerFindexPoint:number;
   ngOnInit(): void { 
 
       this.localStorageService.getCurrentCustomer();
       this.name=this.localStorageService.getCurrentCustomer().firstName;
+      this.customerFindexPoint=this.localStorageService.getCurrentCustomer().customerFindexNumber;
+
     
         console.log(this.localStorageService.getItem("isauth"));
         this.kontrol=this.localStorageService.getItem("isauth");
