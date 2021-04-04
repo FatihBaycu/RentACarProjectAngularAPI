@@ -28,5 +28,6 @@ export class CardService {
 
   getCardById(cardId:number):Observable<SingleResponseModel<Card>>{let newPath=this.apiUrl+"getcardbyid?cardid="+cardId; return this.httpClient.get<SingleResponseModel<Card>>(newPath);}
 
+  
 
 }
