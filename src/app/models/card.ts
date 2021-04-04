@@ -7,4 +7,4 @@ export interface Card{
     customerId:number;
     cardType:string;
 
-}
+} 

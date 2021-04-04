@@ -1,4 +1,5 @@
 <div class="row">
+  
   <div class="col-md-6">
     <div *ngIf="carDetail" class="card rounded-0">
       <div class="card-header fw-bold text-center lead py-3">Fatura Bilgileri</div>
@@ -45,8 +46,8 @@
       <div class="card-body">
         <form [formGroup]="paymentAddForm" (ngSubmit)="pay()">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="nameOnCard" placeholder="nameOnCard" formControlName="nameOnCard">
-            <label for="nameOnCard">Kart Üzerindeki İsim</label>
+            <input type="text" class="form-control" id="cardOnName" placeholder="cardOnName" formControlName="cardOnName">
+            <label for="cardOnName">Kart Üzerindeki İsim</label>
           </div>
 
           <div class="form-floating mb-3">
@@ -57,15 +58,15 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="validDate" placeholder="validDate" formControlName="validDate">
-                <label for="validDate">Geçerlilik Tarihi</label>
+                <input type="text" class="form-control" id="cardValidDate" placeholder="cardValidDate" formControlName="cardValidDate">
+                <label for="cardValidDate">Geçerlilik Tarihi</label>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="cvv" placeholder="cvv" formControlName="cvv">
-                <label for="cvv">Kart arkasında son üç hane</label>
+                <input type="text" class="form-control" id="cardCvv" placeholder="cardCvv" formControlName="cardCvv">
+                <label for="cardCvv">Kart arkasında son üç hane</label>
               </div>
             </div>
           </div>
@@ -79,21 +80,38 @@
             </label>
           </div>
           <div class="text-end">
-            <button class="btn btn-primary">Ödeme Yap</button>
+            <button type="submit" class="btn btn-primary">Ödeme Yap</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col">
-       <table class="table">
+       <table class="table" >
          <tbody>
-           <tr> <th>Kayıtlı Kartlarım</th>
-           <th>Kayıtlı Kartınız Bulunmamaktadır.</th></tr>
+           <thead>Kayıtlı Kartlarım</thead>
+           <tr>
+             <th>Kart Id</th>
+             <th>Kart Numarası</th>
+             <th>Kart Üzerindeki Ad</th>
+             <th>Kart SKT</th>
+             <th>Kart CVV</th>
+             <th>Kart Tipi</th>
 
+            </tr>
+           <tr *ngFor="let card of cards" href="">
+             <td>{{card.id}}</td>
+             <td>{{card.cardNumber}}</td>
+             <td>{{card.cardOnName}}</td>
+             <td>{{card.cardValidDate}}</td>
+             <td>{{card.cardCvv}}</td>
+             <td>{{card.cardType}}</td>
+            </tr>
          </tbody>
        </table>
     </div>
   </div>
+
 </div>

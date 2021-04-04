@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car/car';
 import { Card } from 'src/app/models/card';
@@ -26,6 +26,7 @@ export class PaymentComponent implements OnInit {
   cardAddForm:FormGroup;
   rental: Rental;
   card:Card;
+  cards:Card[];
   saveUsername:boolean;
 
 
@@ -43,7 +44,7 @@ export class PaymentComponent implements OnInit {
     this.getCurrentRental();
     this.getCarDetailById(this.rentalService.getRentingCar().carId)
     this.createPaymentAddForm();
-    
+    this.getCardsByCustomerId(this.localStorageService.getCurrentCustomer().customerId);
   
   }
 
@@ -55,13 +56,13 @@ export class PaymentComponent implements OnInit {
   createPaymentAddForm() {
 
     this.paymentAddForm = this.formBuilder.group({
-      nameOnCard: ["1", Validators.required],
-      cardNumber: ["1", Validators.required],
-      validDate: ["1", Validators.required],
-      cvv: [0, Validators.required],
+      cardOnName: ["", Validators.required],
+      cardNumber: ["", Validators.required],
+      cardValidDate: ["", Validators.required],
+      cardCvv: [0, Validators.required],
       customerId:[this.localStorageService.getCurrentCustomer().customerId,Validators.required],
       cardType:["Visa"]
-      
+
     })
     this.card=this.paymentAddForm.value;
     
@@ -70,10 +71,11 @@ export class PaymentComponent implements OnInit {
     cardAdd(){
       if(this.paymentAddForm.valid){
         let cardModel=this.paymentAddForm.value;
+      
         this.cardService.addCard(cardModel).subscribe(responseSuccess=>{
         this.toastrService.success("Kart Bilgileri Eklendi.");
         }, responseError=>{
-        console.log("Car Add Hatalı.");
+        console.log("Card Add Hatalı.");
               })
 
       }
@@ -81,7 +83,10 @@ export class PaymentComponent implements OnInit {
      
     }
 
+
+
   pay() {
+    debugger
     console.log("Merhaba Dünya");
    
     this.rentalService.addRental(this.rental).subscribe(responseSuccess => {
@@ -92,6 +97,25 @@ export class PaymentComponent implements OnInit {
       console.log(responseError);
     });
   }
+
+
+
+
+
+    getCardsByCustomerId(customerId:number){
+      this.cardService.getCardsByCustomerId(customerId).subscribe(response=>{
+        this.cards=response.data;
+      })
+
+    }
+
+
+
+
+
+
+
+
 
   getCurrentCustomer(): Customer {
     return this.localStorageService.getCurrentCustomer();
