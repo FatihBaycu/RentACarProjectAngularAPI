@@ -8,17 +8,28 @@
             <div class="card-body">
                 <form [formGroup]="carAddForm">
                    
-                    <div class="mb-3">
-                    <label for="brandId">Marka Id</label>
-                    <div class="form-group">
-                        <input type="number" id="brandId" formControlName="brandId" class="form-control" placeholder="Marka Id"/>
-                    </div></div>
+                    <div class="form-floating mb-3">
+                
+                        <select class="form-select" id="brands" formControlName="brandId">
+                            <option value="">-- Marka Seçiniz --</option>
+       
+                            <option *ngFor="let brand of brands" [value]="brand.brandId">
+                               {{brand.brandName}}
+                            </option>
+                         </select>
+                         <label for="brands">Markalar</label>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="colorId">Renk Id</label>
-                        <div class="form-group">
-                            <input type="number" id="colorId" formControlName="colorId" class="form-control" placeholder="Renk Id"/>
-                        </div></div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="colors" formControlName="colorId">
+                               <option value="">-- Renk Seçiniz --</option>
+          
+                               <option *ngFor="let color of colors" [value]="color.colorId">
+                                  {{ color.colorName }}
+                               </option>
+                            </select>
+                            <label for="colors">Renkler</label>
+                         </div>
 
                         <div class="mb-3">
                             <label for="modelYear">Model Yılı</label>
