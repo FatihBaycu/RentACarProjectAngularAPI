@@ -13,11 +13,11 @@ export class CarAddComponent implements OnInit {
 
   carAddForm:FormGroup;
   car:Car[];
-
+  
   constructor(
               private carService:CarService,
               private toastrService:ToastrService,
-              private formBuilder:FormBuilder
+              private formBuilder:FormBuilder             
               ) { }
 
   ngOnInit(): void {
@@ -56,6 +56,6 @@ export class CarAddComponent implements OnInit {
 
       }
 
-  
+      
     }
 

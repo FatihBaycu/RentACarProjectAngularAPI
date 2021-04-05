@@ -16,8 +16,8 @@ import { ColorService } from 'src/app/services/color/color.service';
   styleUrls: ['./car-update.component.css'],
 })
 export class CarUpdateComponent implements OnInit {
-  car!: Car;
-  carDetails: CarDetail;
+  car: Car;
+  //carDetails: CarDetail;
   carUpdateForm: FormGroup;
   colors: Color[];
   brands: Brand[];
@@ -32,16 +32,16 @@ export class CarUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((param) => {
       this.getCarById(param['carId']);
-      this.getBrands();
-      this.getColors();
+   
     });
   }
 
   getCarById(carId: number) {
     this.carService.getCarById(carId).subscribe((response) => {
-      this.carDetails = response.data;
-      //this.car = response.data;
-
+     // this.carDetails = response.data;
+      this.car = response.data;
+      this.getBrands();
+      this.getColors();
       this.createCarUpdateForm();
     });
   }
@@ -70,8 +70,6 @@ export class CarUpdateComponent implements OnInit {
   }
 
   carUpdate() {
-
-
 
     let car: Car = this.carUpdateForm.value;
 

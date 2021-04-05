@@ -2,16 +2,11 @@
     <div class="col-lg-9">
 
         <div class="card">
-            <div class="card-header fw-bold">
-                Araba Güncelle
-            </div>
+            <div class="card-header fw-bold">Araba Güncelle</div>
             <div class="card-body">
                 <form autocomplete="off" *ngIf="car" [formGroup]="carUpdateForm" (ngSubmit)="carUpdate()">
                     <div class="form-floating mb-3">
-                        <!-- <input type="text" class="form-control" id="brandId" placeholder="brandId"
-                            formControlName="brandId">
-                        <label for="brandId">Marka Id</label>
-                    </div> -->
+                
                     <select class="form-select" id="brands" formControlName="brandId">
                         <option value="">-- Marka Seçiniz --</option>
    
@@ -69,9 +64,7 @@
     </div>
     <div class="col-lg-3">
         <div class="d-grid">
-            <button class="btn btn-primary rounded-0" routerLink="/cars">
-                <i class="bi-list me-1"></i> Araba Listesine Geri Dön
-            </button>
+            <button class="btn btn-primary rounded-0" routerLink="/cars">Araba Listesine Geri Dön</button>
         </div>
     </div>
 </div>
