@@ -46,12 +46,13 @@ export class CarAddComponent implements OnInit {
   }
     createAddCarForm(){
         this.carAddForm=this.formBuilder.group({
-        brandId:[1,Validators.required],
-        colorId:[1,Validators.required],
+        brandId:["",Validators.required],
+        colorId:["",Validators.required],
         modelYear:["",Validators.required],
         dailyPrice:["",Validators.required],
         description:["",Validators.required],
-        carName:["",Validators.required]
+        carName:["",Validators.required],
+        carFindexPoint:[""]
       })
     }
 
@@ -63,6 +64,7 @@ export class CarAddComponent implements OnInit {
           this.toastrService.success("Araç başarıyla eklendi");
         },
         responseError=>{
+          console.log(responseError.error);
           if(responseError.error.Errors.length>0){
             console.log(responseError.error.Errors);
             for(let i=0; i<responseError.error.Errors.length; i++){

@@ -5,6 +5,7 @@ import { Customer } from 'src/app/models/customer/customer';
 import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 import { LocalStroageService } from 'src/app/services/local-stroage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +19,9 @@ export class UserProfileComponent implements OnInit {
   customer:Customer;
   constructor(private formBuilder:FormBuilder,
     private customerService:CustomerService,
-    private toastrService:ToastrService,private localStorageService:LocalStroageService) { }
+    private toastrService:ToastrService,
+    private localStorageService:LocalStroageService,
+    private userService:UserService) { }
 
 
   ngOnInit(): void {    
@@ -32,18 +35,21 @@ export class UserProfileComponent implements OnInit {
       firstName:[ this.customer.firstName,Validators.required],
       lastName:[this.customer.lastName,Validators.required],
       email:[this.customer.email,Validators.required],
-      password:[this.localStorageService.getItem("password"),Validators.required],
-      status:[true,Validators.required]
-
     })
   }
 
   userUpdate(){
     if(this.userUpdateForm.valid){
       let userModel=Object.assign({},this.userUpdateForm.value);
-      this.customerService.userUpdate(userModel).subscribe(response=>{
+      this.userService.updateInfos(userModel).subscribe(response=>{
         return this.toastrService.success("Güncellendi.")
-      })
+      },
+      responseError=>{
+        console.log(responseError);
+        this.toastrService.error(responseError);
+        this.toastrService.error(responseError.error,"Hatalı İşlem");
+      }
+      )
     }
   }
 

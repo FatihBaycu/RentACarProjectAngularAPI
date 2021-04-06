@@ -55,6 +55,7 @@ export class CarUpdateComponent implements OnInit {
       dailyPrice: [this.car.dailyPrice, Validators.required],
       description: [this.car.description, Validators.required],
       carName: [this.car.carName, Validators.required],
+      carFindexPoint:[this.car.carFindexPoint],
     });
   }
 

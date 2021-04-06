@@ -32,6 +32,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CustomerRentalComponent } from './components/customer-rental/customer-rental.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     CarUpdateComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ChangePasswordComponent,
+    CustomerRentalComponent
   ],
   imports: [
     BrowserModule,

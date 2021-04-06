@@ -41,13 +41,14 @@ export class PaymentComponent implements OnInit {
     private toastrService: ToastrService,
     private router: Router,
     private cardService:CardService
-  ) { }
+      )   { }
 
   ngOnInit(): void {
     this.getCurrentRental();
     this.getCarDetailById(this.rentalService.getRentingCar().carId)
     this.createPaymentAddForm();
     this.getCardsByCustomerId(this.localStorageService.getCurrentCustomer().customerId);
+    //this.selectedCard;
   
   }
 
@@ -57,6 +58,7 @@ export class PaymentComponent implements OnInit {
   }
 
   createPaymentAddForm() {
+
 
     this.paymentAddForm = this.formBuilder.group({
       cardOnName: ["", Validators.required],

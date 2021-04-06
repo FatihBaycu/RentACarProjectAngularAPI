@@ -26,11 +26,6 @@
                                 <input type="text" id="email" formControlName="email" class="form-control" placeholder="Email"/>
                             </div></div>
 
-                            <div class="mb-3">
-                                <label for="password">Şifre</label>
-                                <div class="form-group">
-                                    <input type="password" id="password" formControlName="password" class="form-control" placeholder="Şifreniz"/>
-                                </div></div>
                 </form>
             </div>
       
@@ -40,4 +35,6 @@
                     <button  (click)="userUpdate()"  class="btn btn-warning">Güncelle</button>
                 </div></div>
         </div>
+        <hr>
+            <button class="btn btn-primary" routerLink="password-change">Şifremi Değiştir</button>
     </div>

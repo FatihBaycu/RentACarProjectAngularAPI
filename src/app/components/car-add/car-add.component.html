@@ -11,9 +11,8 @@
                     <div class="form-floating mb-3">
                 
                         <select class="form-select" id="brands" formControlName="brandId">
-                            <option value="">-- Marka Seçiniz --</option>
        
-                            <option *ngFor="let brand of brands" [value]="brand.brandId">
+                            <option *ngFor="let brand of brands"  [value]="brand.brandId">
                                {{brand.brandName}}
                             </option>
                          </select>
@@ -21,10 +20,8 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="colors" formControlName="colorId">
-                               <option value="">-- Renk Seçiniz --</option>
-          
-                               <option *ngFor="let color of colors" [value]="color.colorId">
+                            <select class="form-select" id="colors" formControlName="colorId">          
+                               <option *ngFor="let color of colors"  [value]="color.colorId">
                                   {{ color.colorName }}
                                </option>
                             </select>
@@ -54,6 +51,12 @@
                                         <div class="form-group">
                                             <input type="text" id="carName" formControlName="carName" class="form-control" placeholder="Model Adı"/>
                                         </div></div>
+
+                                        <div class="mb-3">
+                                            <label for="carFindexPoint">Araba Findex Puanı</label>
+                                            <div class="form-group">
+                                                <input type="number" id="carFindexPoint" formControlName="carFindexPoint" class="form-control" placeholder="Araba Findex Puanı"/>
+                                            </div></div>
                             
                                         
 

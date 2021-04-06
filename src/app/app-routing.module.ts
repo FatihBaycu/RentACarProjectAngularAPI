@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {LoginGuard} from './guards/login.guard';
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { CustomerRentalComponent } from './components/customer-rental/customer-rental.component';
 
 // const routes: Routes = [
 //   { path: 'rentals', component: RentalComponent },
@@ -47,6 +49,9 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'user-profile',component:UserProfileComponent,canActivate:[LoginGuard]},
+  {path:"password-change",component:ChangePasswordComponent,canActivate:[LoginGuard]},
+  {path:"customer-rentals",component:CustomerRentalComponent,canActivate:[LoginGuard]},
+
 
 
 

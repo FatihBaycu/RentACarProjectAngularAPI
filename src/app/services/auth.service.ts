@@ -30,6 +30,6 @@ export class AuthService {
   register(user:RegisterModel):Observable<SingleResponseModel<RegisterModel>>{
     let newPath=this.apiUrl+"register";
     return this.httpClient.post<SingleResponseModel<RegisterModel>>(newPath,user);
-    
   }
+
 }

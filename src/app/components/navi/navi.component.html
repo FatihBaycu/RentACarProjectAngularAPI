@@ -25,11 +25,13 @@
     <button id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-info dropdown-toggle"><strong>{{name}}</strong> </button> 
     <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
       <li><a class="dropdown-item" routerLink="user-profile">Profil</a></li>
+      <li><a class="dropdown-item" routerLink="customer-rentals">Sipariş Geçmişim</a></li>
+
     </ul>
   </li>
   <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
       <li class="nav-item" >
-            <button class="btn btn-success" *ngIf="!kontrol"  routerLink="/login"><strong>Giriş Yap</strong></button>
+            <button class="btn btn-success" *ngIf="!kontrol"  routerLink="login"><strong>Giriş Yap</strong></button>
           </li>
           <li class="nav-item" >
             <button class="btn btn-danger" *ngIf="kontrol" (click)="logout()"  style="color:white;"  routerLink="/cars"><strong>Çıkış Yap</strong></button>
@@ -37,7 +39,7 @@
           </li>
           <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
           <li class="nav-item">
-            <button class="btn btn-primary" *ngIf="!kontrol" routerLink="/register"><strong>Kayıt Ol</strong></button>
+            <button class="btn btn-primary" *ngIf="!kontrol" routerLink="register"><strong>Kayıt Ol</strong></button>
           </li>
 </ul>
           <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
