@@ -33,17 +33,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  logout(){
-    this.localStorageService.setItem("isauth",false);
-        localStorage.clear();
-        console.log("Çıkış Yapıldı");
-        this.router.navigate(['cars'])
-        .then(() => {
-          window.location.reload();
-        });
-  }
 
-  isAuthenticated(){}
+
 
   login(){
 
@@ -52,7 +43,6 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginModel).subscribe(response=>{
         this.toastrService.success(response.message);
-        this.localStorageService.setItem("password",loginModel.password);
         this.localStorageService.setItem("isauth",true);
         this.localStorageService.setItem("token",response.data.token);
         this.getCustomerByEmail(loginModel.email);

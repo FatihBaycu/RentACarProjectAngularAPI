@@ -22,7 +22,9 @@
 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
   <li class="nav-item dropdown" *ngIf="kontrol" >
-    <button id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-info dropdown-toggle"><strong>{{name}}</strong> </button> 
+    <button id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-info dropdown-toggle"><strong>
+      {{ getCurrentCustomer().firstName }} {{ getCurrentCustomer().lastName }}
+    </strong> </button> 
     <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
       <li><a class="dropdown-item" routerLink="user-profile">Profil</a></li>
       <li><a class="dropdown-item" routerLink="customer-rentals">Sipariş Geçmişim</a></li>

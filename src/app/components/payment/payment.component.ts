@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/models/car/car';
 import { Card } from 'src/app/models/card';
 import { CarDetail } from 'src/app/models/carDetail/carDetail';
 import { Customer } from 'src/app/models/customer/customer';
-import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails';
 import { Rental } from 'src/app/models/rental/rental';
 import { CarService } from 'src/app/services/car/car.service';
 import { CardService } from 'src/app/services/card.service';
-import { CustomerService } from 'src/app/services/customer/customer.service';
 import { LocalStroageService } from 'src/app/services/local-stroage.service';
 import { RentalService } from 'src/app/services/rental/rental.service';
 
@@ -30,9 +26,6 @@ export class PaymentComponent implements OnInit {
   cards:Card[];
   selectedCard:Card;
   saveUsername:boolean;
-  test="test";
-
-
 
   constructor(private rentalService: RentalService,
     private carService: CarService,
@@ -41,60 +34,54 @@ export class PaymentComponent implements OnInit {
     private toastrService: ToastrService,
     private router: Router,
     private cardService:CardService
-      )   { }
+             )   { }
 
   ngOnInit(): void {
     this.getCurrentRental();
     this.getCarDetailById(this.rentalService.getRentingCar().carId)
-    this.createPaymentAddForm();
     this.getCardsByCustomerId(this.localStorageService.getCurrentCustomer().customerId);
-    //this.selectedCard;
+    this.createPaymentAddForm();
+    }
+    
 
-  
-  }
-
- 
-
-
-
-
-   onSaveUsernameChanged(value:boolean){
-    this.saveUsername = value;
-  
-  }
-
+   onSaveUsernameChanged(value:boolean){this.saveUsername = value;}
 
 
   createPaymentAddForm() {
+     if(this.selectedCard){
+      this.paymentAddForm = this.formBuilder.group({
+        cardOnName: [this.selectedCard.cardOnName, Validators.required],
+        cardNumber: [this.selectedCard.cardNumber, Validators.required],
+        cardValidDate: [this.selectedCard.cardValidDate, Validators.required],
+        cardCvv: [this.selectedCard.cardCvv, Validators.required],
+        customerId:[this.localStorageService.getCurrentCustomer().customerId,Validators.required],
+        cardType:["Visa"],
+      })
+     } else {
+      this.paymentAddForm = this.formBuilder.group({
+        cardOnName: ["", Validators.required],
+        cardNumber: ["", Validators.required],
+        cardValidDate: ["", Validators.required],
+        cardCvv: [0, Validators.required],
+        customerId:[this.localStorageService.getCurrentCustomer().customerId,Validators.required],
+        cardType:["Visa"],
+      })
+     }
 
 
-    this.paymentAddForm = this.formBuilder.group({
-      cardOnName: ["", Validators.required],
-      cardNumber: ["", Validators.required],
-      cardValidDate: ["", Validators.required],
-      cardCvv: [0, Validators.required],
-      customerId:[this.localStorageService.getCurrentCustomer().customerId,Validators.required],
-      cardType:["Visa"]
-
-    })
-    this.card=this.paymentAddForm.value;
-    
-  }
+    this.card=this.paymentAddForm.value;}
 
     cardAdd(){
       if(this.paymentAddForm.valid){
         let cardModel=this.paymentAddForm.value;
-      
         this.cardService.addCard(cardModel).subscribe(responseSuccess=>{
         this.toastrService.success("Kart Bilgileri Eklendi.");
         }, responseError=>{
         console.log("Card Add Hatalı.");
               })
-
-      }
-      else{this.toastrService.error("Hatalı Giriş Yaptınız!");}
-     
     }
+      else{this.toastrService.error("Hatalı Giriş Yaptınız!");}
+         }
 
 
    
@@ -110,8 +97,7 @@ export class PaymentComponent implements OnInit {
     }, responseError => {
       console.log(responseError)
       this.toastrService.error(responseError.error.message,"Kiralama Başarısız");
-      
-    });
+          });
   }
 
 
@@ -129,17 +115,14 @@ export class PaymentComponent implements OnInit {
       this.cardService.getCardById(id).subscribe(response=>{
         this.selectedCard=response.data;
         this.localStorageService.setItem("activeCard",response.data.cardOnName);
+        this.createPaymentAddForm();
         console.log(this.selectedCard);
       })
     }
 
-  getCurrentCustomer(): Customer {
-    return this.localStorageService.getCurrentCustomer();
-  }
+  getCurrentCustomer(): Customer {    return this.localStorageService.getCurrentCustomer();  }
 
-  getCurrentRental() {
-    this.rental = this.rentalService.getRentingCar();
-  }
+  getCurrentRental() {    this.rental = this.rentalService.getRentingCar();  }
 
   calcTotalPrice(): number {
     let rentDate = new Date(this.rental.rentDate)

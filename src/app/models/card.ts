@@ -6,5 +6,4 @@ export interface Card{
     cardCvv:number;
     customerId:number;
     cardType:string;
-
 } 

@@ -1,7 +1,7 @@
 <div class="row">
   
   <div class="col-md-6">
-    <div *ngIf="carDetail" class="card rounded-0">
+    <div class="card rounded-0">
       <div class="card-header fw-bold text-center lead py-3">Fatura Bilgileri</div>
 
       <div class="card-body p-0">
@@ -46,7 +46,7 @@
       <div class="card-body">
         <form [formGroup]="paymentAddForm" (ngSubmit)="pay()">
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="cardOnName" placeholder="cardOnName" formControlName="cardOnName">
+            <input type="text" class="form-control" id="cardOnName"  placeholder="cardOnName" formControlName="cardOnName">
             <label for="cardOnName">Kart Üzerindeki İsim</label>
           </div>
 
