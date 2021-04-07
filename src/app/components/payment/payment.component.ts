@@ -49,13 +49,21 @@ export class PaymentComponent implements OnInit {
     this.createPaymentAddForm();
     this.getCardsByCustomerId(this.localStorageService.getCurrentCustomer().customerId);
     //this.selectedCard;
+
   
   }
+
+ 
+
+
+
 
    onSaveUsernameChanged(value:boolean){
     this.saveUsername = value;
   
   }
+
+
 
   createPaymentAddForm() {
 
@@ -88,6 +96,9 @@ export class PaymentComponent implements OnInit {
      
     }
 
+
+   
+    
     pay() {
     debugger
     console.log("Merhaba Dünya");
@@ -117,6 +128,7 @@ export class PaymentComponent implements OnInit {
     setCurrentCard(id:number){
       this.cardService.getCardById(id).subscribe(response=>{
         this.selectedCard=response.data;
+        this.localStorageService.setItem("activeCard",response.data.cardOnName);
         console.log(this.selectedCard);
       })
     }

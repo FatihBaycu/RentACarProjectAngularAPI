@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginModel } from '../models/loginModel';
+import { PasswordChange } from '../models/passwordChange';
 import { RegisterModel } from '../models/registerModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
@@ -30,6 +31,11 @@ export class AuthService {
   register(user:RegisterModel):Observable<SingleResponseModel<RegisterModel>>{
     let newPath=this.apiUrl+"register";
     return this.httpClient.post<SingleResponseModel<RegisterModel>>(newPath,user);
+  }
+
+  passwordChange(userPassword:PasswordChange):Observable<SingleResponseModel<PasswordChange>>{
+    let newPath=this.apiUrl+"changepassword";
+    return this.httpClient.put<SingleResponseModel<PasswordChange>>(newPath,userPassword);
   }
 
 }

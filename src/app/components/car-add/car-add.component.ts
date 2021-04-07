@@ -59,6 +59,9 @@ export class CarAddComponent implements OnInit {
     carAdd(){
       if(this.carAddForm.valid){
         let carModel=Object.assign({},this.carAddForm.value);
+        carModel.brandId=Number(carModel.brandId);
+        carModel.colorId=Number(carModel.colorId);
+
         this.carService.addCar(carModel).subscribe((response)=>{
           console.log(carModel);
           this.toastrService.success("Araç başarıyla eklendi");

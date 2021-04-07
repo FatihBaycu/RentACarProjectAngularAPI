@@ -22,7 +22,7 @@ export class UserService {
 
   updateInfos(user:User):Observable<ResponseModel>{
     let newPath=this.apiUrl+"updateinfos";
-    return this.httpClient.post<ResponseModel>(newPath,user);
+    return this.httpClient.put<ResponseModel>(newPath,user);
   }
 
 

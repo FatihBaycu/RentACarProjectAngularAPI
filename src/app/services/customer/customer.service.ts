@@ -46,9 +46,9 @@ export class CustomerService {
       return this.httpClient.get<SingleResponseModel<CustomerDetails>>(newPath);
     }
 
-    userUpdate(customer:Customer):Observable<ResponseModel>{
-      let newPath="https://localhost:44342/api/users/updateuser";
-      return this.httpClient.post<ResponseModel>(newPath,customer);
+    customerUpdate(customer:Customer):Observable<ResponseModel>{
+      let newPath="https://localhost:44342/api/customers/updatecustomer";
+      return this.httpClient.put<ResponseModel>(newPath,customer);
 
     }
   }

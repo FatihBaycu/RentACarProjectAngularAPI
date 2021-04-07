@@ -20,7 +20,7 @@ export class NaviComponent implements OnInit {
 
       this.localStorageService.getCurrentCustomer();
       this.name=this.localStorageService.getCurrentCustomer().firstName;
-      this.customerFindexPoint=this.localStorageService.getCurrentCustomer().customerFindexNumber;
+      this.customerFindexPoint=this.localStorageService.getCurrentCustomer().customerFindexPoint;
 
     
         console.log(this.localStorageService.getItem("isauth"));
@@ -34,6 +34,7 @@ export class NaviComponent implements OnInit {
         console.log("Çıkış Yapıldı");
         this.router.navigate(['cars'])
         .then(() => {
+          window.location.reload();
           window.location.reload();
         });
   }
