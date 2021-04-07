@@ -6,13 +6,14 @@ import { PasswordChange } from '../models/passwordChange';
 import { RegisterModel } from '../models/registerModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
+import { LocalStroageService } from './local-stroage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private localStorageService: LocalStroageService) { }
   apiUrl = 'https://localhost:44342/api/Auth/';
 
 
@@ -21,10 +22,8 @@ export class AuthService {
     return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,user);
   }
 
-  //isAuthenticated(){if(localStorage.getItem("token")){return true;} else {return false;}}
-
-  isAuthenticated(){
-    if(localStorage.getItem("token")){return true;}
+  isAuthenticated(): boolean{
+    if(this.localStorageService.getToken()){return true;}
     else{return false;}
   }
 

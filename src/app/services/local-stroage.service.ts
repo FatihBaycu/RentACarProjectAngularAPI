@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../models/customer/customer';
+import { TokenModel } from '../models/tokenModel';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,11 @@ import { Customer } from '../models/customer/customer';
 export class LocalStroageService {
   
   currentCustomer: string = 'currentCustomer';
+  tokenKey = "token"
 
-      localStorage:Storage;
   //token:string;
 
   constructor() { 
-    this.localStorage=window.localStorage;
   }
 
   //getItem(key:string):TokenModel{return JSON.parse(localStorage.getItem(key));}
@@ -32,10 +32,24 @@ export class LocalStroageService {
   getCurrentCustomer():Customer{
     return JSON.parse(localStorage.getItem(this.currentCustomer));
   }
-  setCurrentCustomer(customer:Customer){localStorage.setItem(this.currentCustomer,JSON.stringify(customer));}
+
+  setCurrentCustomer(customer:Customer){
+    localStorage.setItem(this.currentCustomer,JSON.stringify(customer));
+  }
+  
   removeCurrentCustomer(){
     localStorage.removeItem(this.currentCustomer);
   }
 
-  
+  setToken(token: string){
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(){
+    return localStorage.getItem(this.tokenKey)
+  }
+
+  removeToken(){
+    localStorage.removeItem(this.tokenKey)
+  }
 }

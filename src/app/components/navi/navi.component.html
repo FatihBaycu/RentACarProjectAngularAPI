@@ -1,52 +1,49 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Menü</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Menü</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="cars">Arabalar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="cars/add">Araba Ekle</a>
+        </li>
+
+      </ul>
+      <form class="d-flex">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="cars">Arabalar</a>
+          <li *ngIf="isAuth()" class="nav-item dropdown me-3">
+            <button id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false"
+              class="btn btn-info dropdown-toggle"><strong>
+                <i class="bi bi-person me-1"></i>
+                {{ getCurrentCustomer().firstName }} {{ getCurrentCustomer().lastName }}
+              </strong> </button>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="user-profile">Profil</a></li>
+              <li><a class="dropdown-item" routerLink="customer-rentals">Sipariş Geçmişim</a></li>
+
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="cars/add">Araba Ekle</a>
+
+          <li *ngIf="isAuth()" class="nav-item">
+            <button class="btn btn-danger" (click)="logout()" style="color:white;" routerLink="/cars">
+              <span class="bi-box-arrow-in-right me-2"></span>
+              <strong>Çıkış yap</strong>
+            </button>
           </li>
-         
 
 
-
-    
+          <li *ngIf="!isAuth()" class="nav-item">
+            <button class="btn btn-success me-3" routerLink="/login"><strong>Giriş Yap</strong></button>
+            <button class="btn btn-primary" routerLink="/register"><strong>Kayıt Ol</strong></button>
+          </li>
         </ul>
-        <form class="d-flex">
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-  <li class="nav-item dropdown" *ngIf="kontrol" >
-    <button id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-info dropdown-toggle"><strong>
-      {{ getCurrentCustomer().firstName }} {{ getCurrentCustomer().lastName }}
-    </strong> </button> 
-    <ul class="dropdown-menu"  aria-labelledby="navbarDropdown">
-      <li><a class="dropdown-item" routerLink="user-profile">Profil</a></li>
-      <li><a class="dropdown-item" routerLink="customer-rentals">Sipariş Geçmişim</a></li>
-
-    </ul>
-  </li>
-  <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-      <li class="nav-item" >
-            <button class="btn btn-success" *ngIf="!kontrol"  routerLink="login"><strong>Giriş Yap</strong></button>
-          </li>
-          <li class="nav-item" >
-            <button class="btn btn-danger" *ngIf="kontrol" (click)="logout()"  style="color:white;"  routerLink="/cars"><strong>Çıkış Yap</strong></button>
-
-          </li>
-          <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-          <li class="nav-item">
-            <button class="btn btn-primary" *ngIf="!kontrol" routerLink="register"><strong>Kayıt Ol</strong></button>
-          </li>
-</ul>
-          <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button> -->
-        </form>
-      </div>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>

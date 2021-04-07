@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
     "bootstrap": "^5.0.0-beta2",
+    "bootstrap-icons": "^1.4.1",
     "datatables.net": "^1.10.24",
     "datatables.net-dt": "^1.10.24",
     "jquery": "^3.6.0",
