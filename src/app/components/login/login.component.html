@@ -8,15 +8,15 @@
             <div class="card-body">
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="mb-3">
-                            <label for="email">E-mail</label>
+                            <label  for="email">E-mail</label>
                             <div class="form-group">
-                                <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email"/>
+                                <input appTextStyle type="email" id="email" formControlName="email" class="form-control" placeholder="Email"/>
                             </div></div>
 
                         <div class="mb-3">
                                 <label for="password">Şifre</label>
                                 <div class="form-group">
-                                    <input type="password" id="password" formControlName="password" class="form-control" placeholder="Şifreniz"/>
+                                    <input appTextStyle type="password" id="password" formControlName="password" class="form-control" placeholder="Şifreniz"/>
                                 </div></div>
                 </form>
             </div>     

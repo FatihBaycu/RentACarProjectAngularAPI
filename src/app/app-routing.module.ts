@@ -17,6 +17,7 @@ import {LoginGuard} from './guards/login.guard';
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CustomerRentalComponent } from './components/customer-rental/customer-rental.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 // const routes: Routes = [
 //   { path: 'rentals', component: RentalComponent },
@@ -67,7 +68,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes),MatSliderModule,],
+  exports: [RouterModule],
+  
+
 })
 export class AppRoutingModule { }

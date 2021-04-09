@@ -34,6 +34,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CustomerRentalComponent } from './components/customer-rental/customer-rental.component';
+import { TextStyleDirective } from './directives/text-style.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,8 +62,8 @@ import { CustomerRentalComponent } from './components/customer-rental/customer-r
     RegisterComponent,
     UserProfileComponent,
     ChangePasswordComponent,
-    CustomerRentalComponent
-  ],
+    CustomerRentalComponent,
+    TextStyleDirective  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
