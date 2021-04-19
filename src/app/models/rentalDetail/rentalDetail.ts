@@ -12,5 +12,7 @@ export interface RentalDetail{
     dailyPrice:number;
     carFindexPoint:number;
     customerFindexPoint:number;
+    carName:string;
+    
 
 }
