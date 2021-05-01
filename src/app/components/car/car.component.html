@@ -20,7 +20,7 @@
    <div class="row">
 
  <div class="card" style="width: 18rem; margin-right: 2rem;" *ngFor="let car of carDetails | filterPipe:filterText"  routerLink="/cars/detail/{{ car.carId }}">
-  <img src="https://localhost:44342/{{car.imagePath}}" class="card-img-top" alt="...">
+  <img src="https://localhost:5001/{{car.imagePath}}" class="card-img-top" alt="...">
 
    <div class="card-body">
      <h5 class="card-title">Marka: <strong>{{car.brandName}}</strong></h5>

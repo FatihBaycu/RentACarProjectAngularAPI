@@ -4,9 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand/brand';
 import { Car } from 'src/app/models/car/car';
 import { Color } from 'src/app/models/color/color';
-import { BrandService } from 'src/app/services/brand/brand.service';
-import { CarService } from 'src/app/services/car/car.service';
-import { ColorService } from 'src/app/services/color/color.service';
+import { BrandService } from 'src/app/services/brand.service';
+import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-car-add',

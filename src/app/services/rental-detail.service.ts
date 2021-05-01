@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { RentalDetail } from 'src/app/models/rentalDetail/rentalDetail';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class RentalDetailService {
-  apiUrl = 'https://localhost:44342/api/Rentals/';
+  apiUrl=environment.apiUrl+"Rentals/";
+
   constructor(private httpClient: HttpClient) {}
 
   getRentalDetails(): Observable<ListResponseModel<RentalDetail>> {

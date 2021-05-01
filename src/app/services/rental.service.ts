@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { Rental } from 'src/app/models/rental/rental';
 import { ResponseModel } from 'src/app/models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,10 @@ import { ResponseModel } from 'src/app/models/responseModel';
 
 export class RentalService {
 
-  apiUrl = 'https://localhost:44342/api/rentals/';
+  apiUrl=environment.apiUrl+"rentals/";
+
+
+  
   rentingCar: Rental;
 
   constructor(private httpClient: HttpClient) {

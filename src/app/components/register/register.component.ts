@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
-import { CustomerService } from 'src/app/services/customer/customer.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { LocalStroageService } from 'src/app/services/local-stroage.service';
 
 @Component({

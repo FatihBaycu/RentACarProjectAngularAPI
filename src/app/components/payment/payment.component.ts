@@ -6,10 +6,10 @@ import { Card } from 'src/app/models/card';
 import { CarDetail } from 'src/app/models/carDetail/carDetail';
 import { Customer } from 'src/app/models/customer/customer';
 import { Rental } from 'src/app/models/rental/rental';
-import { CarService } from 'src/app/services/car/car.service';
+import { CarService } from 'src/app/services/car.service';
 import { CardService } from 'src/app/services/card.service';
 import { LocalStroageService } from 'src/app/services/local-stroage.service';
-import { RentalService } from 'src/app/services/rental/rental.service';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-payment',

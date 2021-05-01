@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car/car';
 import { CarDetail } from 'src/app/models/carDetail/carDetail';
-import { CarService } from 'src/app/services/car/car.service';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car',

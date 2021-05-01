@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { CarDetail } from "src/app/models/carDetail/carDetail";
 import { Color } from "src/app/models/color/color";
-import { ColorService } from "src/app/services/color/color.service";
+import { ColorService } from "src/app/services/color.service";
 
 @Component({
   selector: 'app-color',

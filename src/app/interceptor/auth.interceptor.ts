@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ColorService } from '../services/color/color.service';
+import { ColorService } from '../services/color.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

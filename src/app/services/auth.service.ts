@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { LoginModel } from '../models/loginModel';
 import { PasswordChange } from '../models/passwordChange';
 import { RegisterModel } from '../models/registerModel';
@@ -14,7 +15,9 @@ import { LocalStroageService } from './local-stroage.service';
 export class AuthService {
 
   constructor(private httpClient:HttpClient, private localStorageService: LocalStroageService) { }
-  apiUrl = 'https://localhost:44342/api/Auth/';
+  
+  apiUrl=environment.apiUrl+"Auth/";
+
 
 
   login(user:LoginModel):Observable<SingleResponseModel<TokenModel>>{

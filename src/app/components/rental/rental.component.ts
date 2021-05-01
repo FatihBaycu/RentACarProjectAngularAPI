@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer/customer';
 import { Rental } from 'src/app/models/rental/rental';
 import { LocalStroageService } from 'src/app/services/local-stroage.service';
-import { RentalService } from 'src/app/services/rental/rental.service';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-rental',

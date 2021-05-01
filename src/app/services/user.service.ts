@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { User } from '../models/user';
@@ -12,7 +13,7 @@ export class UserService {
 
   constructor(private httpClient:HttpClient) { }
 
-  apiUrl = 'https://localhost:44342/api/users/';
+  apiUrl = environment.apiUrl;
 
 
   getById(id:number):Observable<SingleResponseModel<User>>{

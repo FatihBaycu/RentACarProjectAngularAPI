@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer/customer';
 import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails';
 import { AuthService } from 'src/app/services/auth.service';
-import { CustomerService } from 'src/app/services/customer/customer.service';
+import { CustomerService } from 'src/app/services/customer.service';
 import { LocalStroageService } from 'src/app/services/local-stroage.service';
 import { UserService } from 'src/app/services/user.service';
 

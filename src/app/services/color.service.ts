@@ -5,13 +5,15 @@ import { Color } from 'src/app/models/color/color';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorService {
 
-  apiUrl="https://localhost:44342/api/colors/";
+  apiUrl=environment.apiUrl+"colors/";
+
   colors:Color[];
 
   constructor(private httpClient:HttpClient) { }

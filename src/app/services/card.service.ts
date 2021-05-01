@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Card } from '../models/card';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
@@ -11,7 +12,7 @@ import { SingleResponseModel } from '../models/singleResponseModel';
 })
 export class CardService {
 
-  apiUrl = 'https://localhost:44342/api/cards/';
+  apiUrl=environment.apiUrl+"cards/";
 
   constructor(private httpClient:HttpClient) { }
 

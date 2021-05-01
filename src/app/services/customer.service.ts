@@ -7,13 +7,16 @@ import { CustomerDetails } from 'src/app/models/customerDetails/customerDetails'
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  apiUrl="https://localhost:44342/api/customers/";
+  apiUrl=environment.apiUrl+"customers/";
+
+  
   currentCustomer:CustomerDetails;
   
 

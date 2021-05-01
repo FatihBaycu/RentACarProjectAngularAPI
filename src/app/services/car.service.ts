@@ -6,12 +6,14 @@ import { CarDetail } from 'src/app/models/carDetail/carDetail';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
 import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  apiUrl="https://localhost:44342/api/";
+  apiUrl=environment.apiUrl;
+
 
 
   constructor(private httpClient:HttpClient) { }

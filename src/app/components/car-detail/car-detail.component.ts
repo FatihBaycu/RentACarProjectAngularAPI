@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CarDetail } from 'src/app/models/carDetail/carDetail';
 import { CarImage } from 'src/app/models/carImage/carImage';
 import { CarImageService } from 'src/app/services/car-image.service';
-import { CarService } from 'src/app/services/car/car.service';
+import { CarService } from 'src/app/services/car.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class CarDetailComponent implements OnInit {
 
    carDetail: CarDetail;
    carImages: CarImage[] = [];
-   imageBaseUrl = "https://localhost:44342/";
+   imageBaseUrl = "https://localhost:5001/";
    currentImage:CarImage;
 
    constructor(
