@@ -1,3 +1,4 @@
+import { ConfirmPasswordResetDto } from './../models/confirm-password-reset-dto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,7 +11,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-
+ 
   constructor(private httpClient:HttpClient) { }
 
   apiUrl = environment.apiUrl;
@@ -25,6 +26,19 @@ export class UserService {
     let newPath=this.apiUrl+"updateinfos";
     return this.httpClient.put<ResponseModel>(newPath,user);
   }
+
+  sendPasswordResetMail(email:string):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"users/send-password-reset-mail?email="+email;
+    console.log(newPath);
+    return this.httpClient.post<ResponseModel>(newPath,email);
+  }
+
+  confirmPasswordResetDto(confirmPasswordResetDto:ConfirmPasswordResetDto):Observable<ResponseModel>{
+  let newPath=this.apiUrl+"users/confirm-password-reset-code";
+    console.log(newPath);
+    return this.httpClient.post<ResponseModel>(newPath,confirmPasswordResetDto);
+  }
+
 
 
 }

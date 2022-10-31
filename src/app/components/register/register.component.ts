@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +14,9 @@ import { LocalStroageService } from 'src/app/services/local-stroage.service';
 export class RegisterComponent implements OnInit {
 
   registerForm:FormGroup;
-  constructor(private formBuilder:FormBuilder,private toastrService:ToastrService,private customerService:CustomerService,private authService:AuthService,private localStorageService:LocalStroageService) { }
+  constructor(
+    userService:UserService,
+    private formBuilder:FormBuilder,private toastrService:ToastrService,private customerService:CustomerService,private authService:AuthService,private localStorageService:LocalStroageService) { }
 
   ngOnInit(): void {this.createRegisterForm();}
 

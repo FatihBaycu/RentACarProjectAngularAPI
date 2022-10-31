@@ -16,7 +16,7 @@ export class CustomerRentalComponent implements OnInit {
   ngOnInit(): void {
     this.customerId=this.localStorageService.getCurrentCustomer().customerId;
 
-    this.getRentalDetailsByCustomer(1);
+    this.getRentalDetailsByCustomer(this.customerId);
   }
 
     getRentalDetailsByCustomer(customerId:number){

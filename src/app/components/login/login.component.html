@@ -21,10 +21,11 @@
                 </form>
             </div>     
             <div class="mb-3">
-                <label for="colorAdd"></label>
                 <div class="form-group">
-                    <button  (click)="login()"  class="btn btn-success">Giriş Yap</button>
-                </div></div>
+                    <button  style="margin-left: 15px;" (click)="login()"  class="btn btn-success">Giriş Yap</button>
+                    <a  style="margin-left: 5px;" routerLink="/password-reset"(click)="forgotPassword()"  class="btn btn-secondary">Şifremi Unuttum</a>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

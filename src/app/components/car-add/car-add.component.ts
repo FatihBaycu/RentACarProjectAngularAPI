@@ -24,7 +24,7 @@ export class CarAddComponent implements OnInit {
               private carService:CarService,
               private toastrService:ToastrService,
               private formBuilder:FormBuilder,
-              private colorService: ColorService,
+              private colorService: ColorService,    
               private brandService: BrandService        
               ) { }
 

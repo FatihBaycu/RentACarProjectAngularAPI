@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarUpdateComponent } from './components/car-update/car-update.component';
@@ -18,6 +19,8 @@ import {UserProfileComponent} from './components/user-profile/user-profile.compo
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CustomerRentalComponent } from './components/customer-rental/customer-rental.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 // const routes: Routes = [
 //   { path: 'rentals', component: RentalComponent },
@@ -52,6 +55,10 @@ const routes: Routes = [
   {path:'user-profile',component:UserProfileComponent,canActivate:[LoginGuard]},
   {path:"password-change",component:ChangePasswordComponent,canActivate:[LoginGuard]},
   {path:"customer-rentals",component:CustomerRentalComponent,canActivate:[LoginGuard]},
+  {path:"password-reset",component:ResetPasswordComponent},
+  {path:"update-password",component:UpdatePasswordComponent},
+  {path:"update-password/filter/:userId/:code",component:UpdatePasswordComponent},
+
 
 
 

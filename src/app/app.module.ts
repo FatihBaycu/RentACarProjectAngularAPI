@@ -35,6 +35,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { CustomerRentalComponent } from './components/customer-rental/customer-rental.component';
 import { TextStyleDirective } from './directives/text-style.directive';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,18 +65,22 @@ import { TextStyleDirective } from './directives/text-style.directive';
     UserProfileComponent,
     ChangePasswordComponent,
     CustomerRentalComponent,
-    TextStyleDirective  ],
+    TextStyleDirective,
+    UpdatePasswordComponent,
+    ResetPasswordComponent
+       ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule,  
+    
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     }),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
     
   ],
   providers: [],

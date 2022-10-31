@@ -33,6 +33,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  forgotPassword(){
+    //return this.router.navigate(['/password-reset'])
+
+  }
+
   login(){
     if(this.loginForm.invalid){
       return this.toastrService.warning("Bilgileri doldurduğunuzdan emin olun", "Dikkat")
@@ -52,6 +57,7 @@ export class LoginComponent implements OnInit {
       this.toastrService.error(responseError.error)
    })
     
+
 
     // this.authService.login(loginModel).subscribe(response=>{
     //     this.toastrService.success(response.message);

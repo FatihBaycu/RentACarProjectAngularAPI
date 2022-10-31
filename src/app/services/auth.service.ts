@@ -1,3 +1,4 @@
+import { ResponseModel } from 'src/app/models/responseModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,6 +9,7 @@ import { RegisterModel } from '../models/registerModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
 import { LocalStroageService } from './local-stroage.service';
+import { PasswordResetDto } from '../models/password-reset-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -40,4 +42,9 @@ export class AuthService {
     return this.httpClient.put<SingleResponseModel<PasswordChange>>(newPath,userPassword);
   }
 
+
+  passwordReset(resetPassword:PasswordResetDto):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"password-reset";
+    return this.httpClient.post<ResponseModel>(newPath,resetPassword);
+  }
 }
